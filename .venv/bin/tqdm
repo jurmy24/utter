@@ -1,4 +1,4 @@
-#!/Users/victoroldensand/Documents/deleted-kids/.venv/bin/python3
+#!/Users/victoroldensand/Documents/KTH/Compsci/DEL_KID_Project/deleted-kids/.venv/bin/python3.11
 # -*- coding: utf-8 -*-
 import re
 import sys
