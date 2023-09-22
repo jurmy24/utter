@@ -4,7 +4,7 @@ This is the github repo for the KID/DEL (DH2655 and DH2465) course project.
 ## Commit message convention
 When writing commit messages for this project, please try to write your commit messages in the following manner:
 
-_Keyword: write the message in the imperative sense without capitals and no full stop at the end_
+_Keyword(scope if needed): write the message in the imperative sense without capitals and no full stop at the end_
 
 ### Possible keywords
 
@@ -17,3 +17,4 @@ _Keyword: write the message in the imperative sense without capitals and no full
 * Perf: A code that improves performance
 * Style: A code that is related to styling
 * Test: Adding new test or making changes to existing test
+* Misc: Anything that in no way fits into the other categories
