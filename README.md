@@ -17,3 +17,4 @@ _Keyword(scope if needed): write the message in the imperative sense without cap
 * Perf: A code that improves performance
 * Style: A code that is related to styling
 * Test: Adding new test or making changes to existing test
+* Misc: Anything that in no way fits into the other categories
