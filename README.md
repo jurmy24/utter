@@ -37,7 +37,7 @@ Note: if you want to save the current dependencies list you have in your .venv i
 * Clone this repository
 * `cd` to the _tech-testing_ folder
 * Create a .venv folder using `python3 -m venv .venv`
-* Activate the .venv using `.venv/Scripts/activate`
+* Activate the .venv using `. .venv/Scripts/activate`
 * `cd` into the folder of interest within _tech-testing_
 * In order to run the files in that folder, import the relevant dependencies using `pip install -r requirements.txt`
 
