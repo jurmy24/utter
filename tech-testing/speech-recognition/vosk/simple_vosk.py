@@ -40,6 +40,10 @@ try:
             data = q.get()
             if rec.AcceptWaveform(data):
                 res = json.loads(rec.Result())
+
+                # When it is here, the code understands that a sentence is finished! 
+                # At least if it is a pause long enough. This should mean that we can send the text from here to a text-generation part as soon as a sentence is finished
+
                 print (res)
                 allwords +=  " + " + res[list(res)[0]]
             else:
