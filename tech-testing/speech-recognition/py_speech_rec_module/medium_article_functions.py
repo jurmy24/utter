@@ -10,11 +10,13 @@ import whisper
 import sys
 import tempfile
 import threading
+import argparse
+import queue
 # import numpy as np
 # from gtts import gTTS
 # import pygame
 # import audioread
-# import pickle
+import pickle
 
 
 
@@ -60,6 +62,26 @@ def callback(indata, frames, time, status, q):
             print(status, file=sys.stderr)
         q.put(indata.copy())
 
+def int_or_str(text):
+    """Helper function for argument parsing."""
+    try:
+        return int(text)
+    except ValueError:
+        return text
+    
+def save_response_to_pkl(chat):
+    with open("chat_logs/chat_log.pkl", 'wb') as file:
+        pickle.dump(chat, file)
+
+
+def save_response_to_txt(chat):        
+    with open("chat_logs/chat_log.txt", "w", encoding="utf-8") as file:
+        for chat_entry in chat:
+            role = chat_entry["role"]
+            content = chat_entry["content"]
+            file.write(f"{role}: {content}\n")
+
+
 def press2record(q, filename, subtype, channels, samplerate=24000):
 
     def callback_with_q(indata, frames, time, status):
@@ -96,3 +118,33 @@ def press2record(q, filename, subtype, channels, samplerate=24000):
         print('Interrupted by user')
 
     return filename
+
+if __name__ == "__main__":
+    if os.path.exists("input_to_gpt.wav"):
+        os.remove("input_to_gpt.wav")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--model", default="small", help="Model to use",
+                        choices=["tiny", "base", "small", "medium", "large"])
+    parser.add_argument('-d', '--device', type=int_or_str,help='input device (numeric ID or substring)')
+    parser.add_argument('-r', '--samplerate', default=27000, type=int, help='sampling rate')
+    parser.add_argument(
+        '-c', '--channels', type=int, default=1, help='number of input channels')
+    parser.add_argument(
+        '-t', '--subtype', type=str, help='sound file subtype (e.g. "PCM_24")')
+    args = parser.parse_args()
+    model = args.model 
+    audio_model = whisper.load_model(model)
+
+    q = queue.Queue()
+
+    messages = [
+        {"role": "system", "content" : "Du bist Anna, meine deutsch Tutor. Du wirst mit mir chatten, als wärst du eine Freundin von mir. Ich werde dir sagen an welchem Thema ich reden wollte. Ihre Antworten werden kurz (circa 30-40 Wörter) und einfach sein. Mein Niveau ist B1, stell deine Satzkomplexität auf mein Niveau ein. Versuche immer, mich zum Reden zu bringen, indem du Fragen stellst, und vertiefe den Chat immer.Du beantwortest nur auf Deutsch"}
+    ]
+    while True:
+
+            # Get the user's voice command
+            command = get_voice_command(args, q, audio_model)  
+            print("---------------")
+            if command == -1:
+                save_response_to_pkl(messages)
+                save_response_to_txt(messages)
