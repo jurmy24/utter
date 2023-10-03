@@ -24,7 +24,7 @@ while(1):
 	# Exception handling to handle
 	# exceptions at the runtime
 	try:
-		
+		print("Are you here?")
 		# use the microphone as source for input.
 		with sr.Microphone() as source2:
 			
@@ -33,17 +33,18 @@ while(1):
 			# the surrounding noise level
 			r.adjust_for_ambient_noise(source2, duration=0.2)
 			
+			print("Listening...")
+			print("From: " + str(source2))
             
 			#listens for the user's input
 			audio2 = r.listen(source2)
 			
-			print("Listening...")
 			# Using google to recognize audio
-			MyText = r.recognize_google(audio2)
+			MyText = r.recognize_whisper(audio2, language="english")
 			MyText = MyText.lower()
 
 			print("Did you say ",MyText)
-			SpeakText(MyText)
+			# SpeakText(MyText)
 			
 	except sr.RequestError as e:
 		print("Could not request results; {0}".format(e))
