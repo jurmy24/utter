@@ -27,7 +27,7 @@ try:
     
     device_info = sd.query_devices(None, "input")
     # soundfile expects an int, sounddevice provides a float:
-    samplerate = int(device_info["default_samplerate"])
+    samplerate = int(device_info["default_samplerate"]) + 10000
     rec = KaldiRecognizer(model, samplerate)
     with sd.RawInputStream(samplerate=samplerate, blocksize = 8000, dtype="int16", channels=1, device=None, callback=callback):
         print("#" * 80)
