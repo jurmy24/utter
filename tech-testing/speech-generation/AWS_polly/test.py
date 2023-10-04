@@ -18,7 +18,7 @@ def synthesize_speech(text, output_file):
     
     try:
         # Request speech synthesis
-        response = polly_client.synthesize_speech(VoiceId='Joanna',
+        response = polly_client.synthesize_speech(VoiceId='Matthew',
                                                   OutputFormat='mp3', 
                                                   Text=text)
     except (BotoCoreError) as error:
