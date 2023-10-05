@@ -3,6 +3,8 @@ import sounddevice as sd
 from scipy.io.wavfile import write
 import keyboard
 import numpy as np
+import tempfile
+import os
 
 
 # Recording audio with sounddevice
@@ -12,7 +14,7 @@ recording = True  # Flag to control recording
 def record_audio():
     global recording
     while recording:
-        print("Press and hold the spacebar to start recording. Release to stop and transcribe. Press 'Escape' to exit.")
+        print("Press and hold the spacebar to start recording. Release to stop and transcribe. Press 'ctrl+c' to exit.")
         keyboard.wait("space")  # Wait until the spacebar is pressed
 
         print("Recording started. Release the spacebar to stop.")
@@ -32,14 +34,17 @@ def record_audio():
         # Convert the list to a NumPy array
         myrecording = np.array(myrecording)
 
-        # Save the audio as a WAV file
-        write('output.wav', fs, myrecording)
+              # Create a temporary directory
+        with tempfile.TemporaryDirectory() as temp_dir:
+            temp_wav_path = os.path.join(temp_dir, "temp_output.wav")
+            # Save the audio as a temporary WAV file
+            write(temp_wav_path, fs, myrecording)
 
-        # Whisper transcription
-        model = whisper.load_model("base")
-        result = model.transcribe("output.wav")
-        print("Transcription:")
-        print(result["text"])
+            # Whisper transcription
+            model = whisper.load_model("base")
+            result = model.transcribe(temp_wav_path)
+            print("Transcription:")
+            print(result["text"])
 
 # No exit key for now
 # def check_exit_key():
