@@ -3,6 +3,9 @@ import sounddevice as sd
 from scipy.io.wavfile import write
 import keyboard
 import numpy as np
+import tempfile
+import os
+import soundfile as sf
 
 
 # Recording audio with sounddevice
@@ -29,15 +32,19 @@ def record_audio() -> str:
 
     # Convert the list to a NumPy array
     myrecording = np.array(myrecording)
+    
+    # Create a temporary directory
+    with tempfile.TemporaryDirectory() as temp_dir:
+        temp_wav_path = os.path.join(temp_dir, "temp_output.wav")
+        # Save the audio as a temporary WAV file
+        write(temp_wav_path, fs, myrecording)
 
-    # Save the audio as a WAV file
-    write('output.wav', fs, myrecording)
+        # Whisper transcription
+        model = whisper.load_model("base")
+        result = model.transcribe(temp_wav_path)
+        print("Transcription:")
+        print(result["text"])
 
-    # Whisper transcription
-    model = whisper.load_model("base")
-    result = model.transcribe("output.wav")
-    print("Transcription:")
-    print(result["text"])
     return result["text"]
 
 
