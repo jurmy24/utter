@@ -41,17 +41,18 @@ def send_message(messages):
 # Create the admin prompt for the model to adhere to.
 messages = [{"role": "system", "content": admin_prompt}]
 
-# Start an infinite loop to continue the conversation with the user.
-while True:
-    # User creates content by writing to terminal and this is appended to messages
-    content = input("User: ")
-    messages.append({"role": "user", "content": content})
+if __name__ == "__main__":
+    # Start an infinite loop to continue the conversation with the user.
+    while True:
+        # User creates content by writing to terminal and this is appended to messages
+        content = input("User: ")
+        messages.append({"role": "user", "content": content})
 
-    # Use the OpenAI GPT-3.5 model to generate a response to the user's input.
-    chat_response = send_message(messages)
+        # Use the OpenAI GPT-3.5 model to generate a response to the user's input.
+        chat_response = send_message(messages)
 
-    # Print the response.
-    print(f'ChatGPT: {chat_response}') 
+        # Print the response.
+        print(f'ChatGPT: {chat_response}') 
 
-    # Append the response to the messages with the role "assistant" to store the chat history.
-    messages.append({"role": "assistant", "content": chat_response})
+        # Append the response to the messages with the role "assistant" to store the chat history.
+        messages.append({"role": "assistant", "content": chat_response})
