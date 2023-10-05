@@ -14,12 +14,13 @@ def synthesize_speech(text, output_file):
     polly_client = boto3.Session(
         aws_access_key_id=AWS_ACC_KEY,
         aws_secret_access_key=AWS_SEC_ACC_KEY,
-        region_name='eu-north-1').client('polly')
+        region_name='eu-west-3').client('polly')
     
     try:
         # Request speech synthesis
         response = polly_client.synthesize_speech(VoiceId='Matthew',
-                                                  OutputFormat='mp3', 
+                                                  Engine='neural',
+                                                  OutputFormat='mp3',
                                                   Text=text)
     except (BotoCoreError) as error:
         print(error)
