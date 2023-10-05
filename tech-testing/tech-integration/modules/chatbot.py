@@ -41,6 +41,12 @@ def send_message(messages):
 # Create the admin prompt for the model to adhere to.
 messages = [{"role": "system", "content": admin_prompt}]
 
+def chat(content: str) -> str:
+    messages.append({"role": "user", "content": content})
+    chat_response = send_message(messages)
+    messages.append({"role": "assistant", "content": chat_response})
+    return chat_response
+
 if __name__ == "__main__":
     # Start an infinite loop to continue the conversation with the user.
     while True:

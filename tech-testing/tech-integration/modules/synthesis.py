@@ -6,6 +6,7 @@ import sys
 import subprocess
 from tempfile import gettempdir
 from dotenv import load_dotenv
+import pygame
 
 """Setup"""
 # Fetch the AWS keys
@@ -19,6 +20,9 @@ session = Session(
         aws_secret_access_key=AWS_SEC_ACC_KEY,
         region_name='eu-west-3')
 polly_client = session.client('polly')
+
+# Instantiate the pygame mixer
+pygame.mixer.init()
 
 # Speech synthesis function
 def synthesize_speech(text):
@@ -57,11 +61,24 @@ def synthesize_speech(text):
     
     # Play the audio using the platform's default player
     if sys.platform == "win32":
-        os.startfile(output)
+        try: 
+            pygame.mixer.music.load(output)
+            pygame.mixer.music.play()
+            while pygame.mixer.music.get_busy():
+                pygame.time.Clock().tick(10)
+        except Exception as e:
+            print(f"Error occurred while playing audio file: {str(e)}")
+        # os.startfile(output)
+
     else:
         # The following works on macOS and Linux. (Darwin = mac, xdg-open = linux).
         opener = "open" if sys.platform == "darwin" else "xdg-open"
-        subprocess.call([opener, output])
+        # Use subprocess.run (waits for completion) instead of call
+        completed_process = subprocess.run([opener, output], check=True)
+        
+        # Check return code
+        if completed_process.returncode != 0:
+            print(f"Error occurred while playing audio file: Return code {completed_process.returncode}")
     
 
 if __name__ == "__main__":
