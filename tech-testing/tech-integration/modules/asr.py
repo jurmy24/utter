@@ -8,7 +8,7 @@ import os
 import soundfile as sf
 import assemblyai as aai
 from dotenv import load_dotenv
-from asr_modules import aai_asr, whisper_asr, vosk_asr
+# from asr_modules import aai_asr, whisper_asr, vosk_asr
 
 load_dotenv()
 aai.settings.api_key = os.getenv('AAI_API_KEY')
