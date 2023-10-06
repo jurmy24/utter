@@ -8,6 +8,7 @@ import os
 import soundfile as sf
 import assemblyai as aai
 from dotenv import load_dotenv
+from asr_modules import aai_asr, whisper_asr, vosk_asr
 
 load_dotenv()
 aai.settings.api_key = os.getenv('AAI_API_KEY')
@@ -44,7 +45,6 @@ def record_audio():
 
     return myrecording
 
-
 def get_user_audio_whisper() -> str:
     myrecording = record_audio()
     
@@ -78,7 +78,12 @@ def get_user_audio_aai() -> str:
         print(transcript.text)
     return transcript.text
 
+def get_user_audio_vosk() -> str:
+    text = vosk_asr.vosk_recorder()
+    print(text)
+    return text
+
 
 
 if __name__ == "__main__":
-    record_audio_whisper()
+    get_user_audio_whisper()
