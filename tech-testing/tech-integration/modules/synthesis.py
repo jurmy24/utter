@@ -21,12 +21,12 @@ session = Session(
         region_name='eu-west-3')
 polly_client = session.client('polly')
 
-# Instantiate the pygame mixer
-pygame.mixer.init()
+
 
 # Speech synthesis function
 def synthesize_speech(text):
-    
+    # Instantiate the pygame mixer
+    pygame.mixer.init()
     # Set up the response
     try:
         # Request speech synthesis
@@ -59,6 +59,7 @@ def synthesize_speech(text):
         print("Could not stream audio.")
         return
     
+
     # Play the audio using the platform's default player
     if sys.platform == "win32":
         try: 
@@ -79,12 +80,17 @@ def synthesize_speech(text):
         # Check return code
         if completed_process.returncode != 0:
             print(f"Error occurred while playing audio file: Return code {completed_process.returncode}")
+        # Stop and quit the pygame mixer after each iteration
+    pygame.mixer.music.stop()
+    pygame.mixer.quit()
     
 
 if __name__ == "__main__":
+
     while True:
         # Prompt the user to enter the text
         text = input("Please enter the text you want to synthesize:\n")
-
+        
         # Call the function to synthesize speech from text
         synthesize_speech(text)
+        
