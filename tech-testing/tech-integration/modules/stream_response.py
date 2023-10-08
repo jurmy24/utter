@@ -29,13 +29,28 @@ Tim: Anyways, how's your day going? Have you been caught in the rain lately?
                """
 
 """Helper Functions"""
-def send_message(messages):
-    completion = openai.ChatCompletion.create(
+def process_msg(messages):
+    response = openai.ChatCompletion.create(
         model=MODEL,
         messages=messages,
         temperature=TEMPERATURE,
-        max_tokens=MAX_TOKENS
+        max_tokens=MAX_TOKENS,
+        stream=True
     )
+    for chunk in response:
+        print(chunk)
+
+    # create variables to collect the stream of chunks
+    collected_chunks = []
+    collected_messages = []
+
+    for chunk in response:
+        # chunk_time = time.time() - start_time  # calculate the time delay of the chunk
+        collected_chunks.append(chunk)  # save the event response
+        chunk_message = chunk['choices'][0]['delta']  # extract the message
+        collected_messages.append(chunk_message)  # save the message
+        # print(f"Message received {chunk_time:.2f} seconds after request: {chunk_message}")  # print the delay and text
+    
 
     # Return the chat response from the API response.
     return completion.choices[0].message["content"]
@@ -45,7 +60,7 @@ messages = [{"role": "system", "content": admin_prompt}]
 
 def chat(content: str) -> str:
     messages.append({"role": "user", "content": content})
-    chat_response = send_message(messages)
+    chat_response = process_msg(messages)
     messages.append({"role": "assistant", "content": chat_response})
     return chat_response
 
@@ -57,7 +72,7 @@ if __name__ == "__main__":
         messages.append({"role": "user", "content": content})
 
         # Use the OpenAI GPT-3.5 model to generate a response to the user's input.
-        chat_response = send_message(messages)
+        chat_response = process_msg(messages)
 
         # Print the response.
         print(f'ChatGPT: {chat_response}') 
