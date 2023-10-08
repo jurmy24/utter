@@ -3,7 +3,7 @@ import whisper
 import keyboard
 import tempfile
 import os
-import sys
+import warnings
 import numpy as np
 import sounddevice as sd
 import assemblyai as aai
@@ -25,6 +25,9 @@ default_input_id, _ = sd.default.device # Get ID for default audio input channel
 NUM_CHANS = sd.query_devices()[default_input_id]['max_input_channels'] # Retrieve default and get max num of channels
 whisper_model = whisper.load_model("base")
 aai_model = aai.Transcriber()
+
+# Hide the whisper UserWarning
+warnings.filterwarnings("ignore", category=UserWarning, module='whisper')
 
 """ FUNCTIONS """
 def record_audio() -> np.array:
