@@ -48,7 +48,7 @@ def record_audio() -> np.array:
     with stream:
         # Put audio chunks into the recording while the keyboard is pressed
         while keyboard.is_pressed("space"):
-            audio_chunk, overflowed = stream.read(FS)
+            audio_chunk, _ = stream.read(FS)
             audio_rec.extend(audio_chunk)
     print("Recording done!")
 
