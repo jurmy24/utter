@@ -8,14 +8,13 @@ import os
 import soundfile as sf
 import assemblyai as aai
 from dotenv import load_dotenv
-# from asr_modules import aai_asr, whisper_asr, vosk_asr
+# from asr_modules import vosk_asr
 
 load_dotenv()
 aai.settings.api_key = os.getenv('AAI_API_KEY')
 
 # Recording audio with sounddevice
 fs = 44100  # Sample rate
-
 
 def record_audio():
     """
@@ -28,7 +27,9 @@ def record_audio():
 
     print("Recording started. Release the spacebar to stop.")
     myrecording = []
-    stream = sd.InputStream(samplerate=fs, channels=2)
+
+    #TODO: Set as 2 for windows and 1 for mac (# of channels)
+    stream = sd.InputStream(samplerate=fs, channels=1)
 
     with stream:
         while True:
@@ -61,8 +62,6 @@ def get_user_audio_whisper() -> str:
         print(result["text"])
 
     return result["text"]
-
-
 
 def get_user_audio_aai() -> str:
     myrecording = record_audio()
