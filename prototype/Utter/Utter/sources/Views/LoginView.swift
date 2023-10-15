@@ -37,18 +37,6 @@ struct LoginView: View {
                         .padding(.horizontal, 32)
                         .background(Color.purple)
                         .cornerRadius(8)
-//                    Button(action: {
-//                        // Your login logic here
-//                        print("Login button tapped")
-//                    }) {
-//                        Text("Log In")
-//                            .foregroundColor(.white)
-//                            .padding(.vertical, 12)
-//                            .padding(.horizontal, 32)
-//                            .background(Color.purple)
-//                            .cornerRadius(8)
-//                    }
-//                    .padding(.top, 20)
                 }
                 
             }
