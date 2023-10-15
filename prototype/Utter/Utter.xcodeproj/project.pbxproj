@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E82FF7582ADAC16500BE59C8 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FF7572ADAC16500BE59C8 /* OnboardingView.swift */; };
+		E82FF75A2ADAC98700BE59C8 /* SpeakerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FF7592ADAC98700BE59C8 /* SpeakerView.swift */; };
 		E85B8E272AD5D57B00F8BF5A /* UtterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85B8E262AD5D57B00F8BF5A /* UtterApp.swift */; };
 		E85B8E292AD5D57B00F8BF5A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85B8E282AD5D57B00F8BF5A /* ContentView.swift */; };
 		E85B8E2B2AD5D57D00F8BF5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E85B8E2A2AD5D57D00F8BF5A /* Assets.xcassets */; };
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E82FF7572ADAC16500BE59C8 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		E82FF7592ADAC98700BE59C8 /* SpeakerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerView.swift; sourceTree = "<group>"; };
 		E85B8E232AD5D57B00F8BF5A /* Utter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Utter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E85B8E262AD5D57B00F8BF5A /* UtterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtterApp.swift; sourceTree = "<group>"; };
 		E85B8E282AD5D57B00F8BF5A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -137,6 +141,8 @@
 				E85B8E282AD5D57B00F8BF5A /* ContentView.swift */,
 				E85B8E522AD5E5FB00F8BF5A /* LoginView.swift */,
 				E85B8E552AD5EA7700F8BF5A /* TandemListView.swift */,
+				E82FF7572ADAC16500BE59C8 /* OnboardingView.swift */,
+				E82FF7592ADAC98700BE59C8 /* SpeakerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -273,7 +279,9 @@
 			files = (
 				E85B8E532AD5E5FB00F8BF5A /* LoginView.swift in Sources */,
 				E85B8E292AD5D57B00F8BF5A /* ContentView.swift in Sources */,
+				E82FF75A2ADAC98700BE59C8 /* SpeakerView.swift in Sources */,
 				E85B8E272AD5D57B00F8BF5A /* UtterApp.swift in Sources */,
+				E82FF7582ADAC16500BE59C8 /* OnboardingView.swift in Sources */,
 				E85B8E562AD5EA7700F8BF5A /* TandemListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

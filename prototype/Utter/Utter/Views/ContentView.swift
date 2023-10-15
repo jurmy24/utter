@@ -10,40 +10,17 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var pushLoginView: Bool = false
+    // Appstorage allows the onboarding value to persist when you exit the app too
+    @AppStorage("onboarding") var onboarding = true
     
     var body: some View {
-        NavigationView{
-            ZStack {
-                // Purple faded background
-                Color.purple.opacity(0.9).edgesIgnoringSafeArea(.all)
-                
-                NavigationLink(isActive: $pushLoginView) {
-                    LoginView()
-                } label: {
-                
-                    // Your original VStack
-                    VStack {
-                        Image(systemName: "speaker.fill")
-                            .foregroundColor(.white)  // Changing accent color to white
-                            .font(.largeTitle)
-                        Text("Utter")
-                            .foregroundColor(.white)  // Making the text white
-                            .font(.largeTitle)
-                    }
-                    .accentColor(.white)  // Setting the VStack's accent color to white
-                }
-            }
-        }.onAppear {
-            Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
-                pushLoginView = true
-            }
+        if onboarding {
+            OnboardingView()
+        } else{
+            LoginView()
         }
-        
     }
 }
-
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
