@@ -134,7 +134,7 @@
 			path = UtterUITests;
 			sourceTree = "<group>";
 		};
-		E85B8E542AD5E80100F8BF5A /* Views */ = {
+		E85B8E542AD5E80100F8BF5A /* views */ = {
 			isa = PBXGroup;
 			children = (
 				E85B8E282AD5D57B00F8BF5A /* ContentView.swift */,
@@ -143,15 +143,15 @@
 				E82FF7572ADAC16500BE59C8 /* OnboardingView.swift */,
 				E82FF7592ADAC98700BE59C8 /* SpeakerView.swift */,
 			);
-			path = Views;
+			path = views;
 			sourceTree = "<group>";
 		};
 		E8F38FFA2ADC10E1008CC27C /* sources */ = {
 			isa = PBXGroup;
 			children = (
 				E85B8E262AD5D57B00F8BF5A /* UtterApp.swift */,
-				E85B8E542AD5E80100F8BF5A /* Views */,
-				E8F38FFE2ADC12D6008CC27C /* model */,
+				E85B8E542AD5E80100F8BF5A /* views */,
+				E8F38FFE2ADC12D6008CC27C /* models */,
 			);
 			path = sources;
 			sourceTree = "<group>";
@@ -164,11 +164,11 @@
 			path = resources;
 			sourceTree = "<group>";
 		};
-		E8F38FFE2ADC12D6008CC27C /* model */ = {
+		E8F38FFE2ADC12D6008CC27C /* models */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = model;
+			path = models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,6 +187,8 @@
 			dependencies = (
 			);
 			name = Utter;
+			packageProductDependencies = (
+			);
 			productName = Utter;
 			productReference = E85B8E232AD5D57B00F8BF5A /* Utter.app */;
 			productType = "com.apple.product-type.application";
@@ -259,6 +261,8 @@
 				Base,
 			);
 			mainGroup = E85B8E1A2AD5D57B00F8BF5A;
+			packageReferences = (
+			);
 			productRefGroup = E85B8E242AD5D57B00F8BF5A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -393,7 +397,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -447,7 +451,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -465,8 +469,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Utter/Preview Content\"";
+				DEVELOPMENT_TEAM = B2R39BY89D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Speech recognition services are used by this app to convert speech to text.\n";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Speech recognition services are used by this app to convert speech to text.\n";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -496,8 +503,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Utter/Preview Content\"";
+				DEVELOPMENT_TEAM = B2R39BY89D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Speech recognition services are used by this app to convert speech to text.\n";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Speech recognition services are used by this app to convert speech to text.\n";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct SpeakerView: View {
     @State private var isTalking: Bool = false
-    
+
     var body: some View {
         VStack(spacing: 20) {
             HStack {
@@ -17,7 +18,7 @@ struct SpeakerView: View {
                     .resizable()
                     .frame(width: 50, height: 50)
                     .padding()
-                
+
                 VStack(alignment: .leading) {
                     Text("Tim")
                         .font(.headline)
@@ -26,7 +27,7 @@ struct SpeakerView: View {
                         .font(.subheadline)
                 }
             }
-            
+
             Button(action: {
                 isTalking.toggle()
             }) {
@@ -37,7 +38,7 @@ struct SpeakerView: View {
                     .cornerRadius(10)
             }
             .padding()
-            
+
         }
         .padding()
         .background(
