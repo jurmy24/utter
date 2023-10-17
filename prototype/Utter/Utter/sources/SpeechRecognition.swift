@@ -11,7 +11,6 @@ import Speech
 func requestPermission(completion: @escaping (String) -> Void){
     print("Started request permission")
     SFSpeechRecognizer.requestAuthorization{authStatus in
-        print("Here now")
         if authStatus == .authorized {
             if let path = Bundle.main.path(forResource: "audio", ofType: "mp3"){
                 recognizeAudio(url: URL(fileURLWithPath: path), completion: completion)
@@ -23,7 +22,6 @@ func requestPermission(completion: @escaping (String) -> Void){
         }
     }
 }
-var counter = 0
 func recognizeAudio(url: URL, completion: @escaping (String) -> Void){
     print("Entered Recognize Audio")
     let recognizer = SFSpeechRecognizer()
@@ -34,7 +32,6 @@ func recognizeAudio(url: URL, completion: @escaping (String) -> Void){
             print("No results for speech recognition")
             return
         }
-        print(counter)
         print(result.bestTranscription.formattedString)
         completion(result.bestTranscription.formattedString)
     })
