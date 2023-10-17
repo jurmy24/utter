@@ -10,15 +10,16 @@ import AVFoundation
 
 struct SpeakerView: View {
     @State private var isTalking: Bool = false
-
+    @State var lyrics = ""
     var body: some View {
+        
         VStack(spacing: 20) {
             HStack {
                 Image(systemName: "person.fill")
                     .resizable()
                     .frame(width: 50, height: 50)
                     .padding()
-
+                
                 VStack(alignment: .leading) {
                     Text("Tim")
                         .font(.headline)
@@ -27,7 +28,7 @@ struct SpeakerView: View {
                         .font(.subheadline)
                 }
             }
-
+            
             Button(action: {
                 isTalking.toggle()
             }) {
@@ -38,7 +39,7 @@ struct SpeakerView: View {
                     .cornerRadius(10)
             }
             .padding()
-
+            
         }
         .padding()
         .background(
@@ -47,7 +48,18 @@ struct SpeakerView: View {
                 .shadow(radius: 10)
         )
         .padding()
+        Text(lyrics).foregroundColor(.black)
+            .onAppear{
+                playSound(sound: "audio", type: "mp3")
+                requestPermission { result in
+                    lyrics = result
+                }
+            }
     }
+    
+    
+    
+    
 }
 
 struct SpeakerView_Previews: PreviewProvider {
