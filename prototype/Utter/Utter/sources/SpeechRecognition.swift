@@ -8,10 +8,12 @@
 import Foundation
 import Speech
 
+
 func requestPermission(completion: @escaping (String) -> Void){
     print("Started request permission")
     SFSpeechRecognizer.requestAuthorization{authStatus in
         if authStatus == .authorized {
+            // FileManager.default.fileExists(atPath: urlForMemo.path)
             if let path = Bundle.main.path(forResource: "audio", ofType: "mp3"){
                 recognizeAudio(url: URL(fileURLWithPath: path), completion: completion)
             }else{

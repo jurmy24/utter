@@ -11,9 +11,14 @@ import AVFoundation
 struct SpeakerView: View {
     @State private var isTalking: Bool = false
     @State var lyrics = ""
+    @ObservedObject var audioBox = AudioBox()
+    @State var hasMicAccess = false
+    @State var displayNotification = false
+    
     var body: some View {
         
         VStack(spacing: 20) {
+            
             HStack {
                 Image(systemName: "person.fill")
                     .resizable()
@@ -31,6 +36,17 @@ struct SpeakerView: View {
             
             Button(action: {
                 isTalking.toggle()
+                if audioBox.status == .stopped {
+                    if hasMicAccess{
+                        audioBox.record()
+                    }else{
+                        requestMicrophoneAccess()
+                    }
+                    
+                } else {
+                    audioBox.stopRecording()
+                    playSound(sound: "audio", type: "mp3")
+                }
             }) {
                 Text(isTalking ? "Release to End Talking" : "Press and Hold to Talk")
                     .foregroundColor(.white)
@@ -39,24 +55,47 @@ struct SpeakerView: View {
                     .cornerRadius(10)
             }
             .padding()
-            
+            Text(lyrics).foregroundColor(.black)
         }
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color(.systemBackground))
                 .shadow(radius: 10)
+            
+            
         )
         .padding()
-        Text(lyrics).foregroundColor(.black)
-            .onAppear{
-                playSound(sound: "audio", type: "mp3")
-                requestPermission { result in
-                    lyrics = result
-                }
-            }
+        .onAppear{
+            //playSound(sound: "audio", type: "mp3") // Currently not playing the audio so I don't confuse the recording
+//            requestPermission { result in
+//                lyrics = result
+//            }
+            audioBox.setupRecorder() // Initialize the recorder
+        }
+        .alert(isPresented: $displayNotification){
+            Alert(title: Text("Requires microphone access"),
+                  message: Text("You're screwed"),
+                  dismissButton: .default(Text("OK")))
+        }
+        
+        
+        
     }
     
+    
+    private func requestMicrophoneAccess(){
+        let session = AVAudioSession.sharedInstance()
+        session.requestRecordPermission { granted in
+            hasMicAccess = granted
+            if granted {
+                audioBox.record()
+            }else{
+                displayNotification = true
+            }
+            
+        }
+    }
     
     
     
