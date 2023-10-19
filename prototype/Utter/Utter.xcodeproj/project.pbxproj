@@ -25,7 +25,6 @@
 		E8D0A19E2AE13AE70045C1E6 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D0A19D2AE13AE70045C1E6 /* SpeechRecognizer.swift */; };
 		E8D0A1A52AE192930045C1E6 /* OpenAISwift in Frameworks */ = {isa = PBXBuildFile; productRef = E8D0A1A42AE192930045C1E6 /* OpenAISwift */; };
 		E8D0A1A72AE199230045C1E6 /* ChatGPTCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D0A1A62AE199230045C1E6 /* ChatGPTCaller.swift */; };
-		E8D0A1AA2AE1A0C30045C1E6 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = E8D0A1A92AE1A0C30045C1E6 /* Keys.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,7 +65,6 @@
 		E85B8E552AD5EA7700F8BF5A /* TandemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TandemListView.swift; sourceTree = "<group>"; };
 		E8D0A19D2AE13AE70045C1E6 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
 		E8D0A1A62AE199230045C1E6 /* ChatGPTCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTCaller.swift; sourceTree = "<group>"; };
-		E8D0A1A92AE1A0C30045C1E6 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,7 +163,6 @@
 		E8F38FFA2ADC10E1008CC27C /* sources */ = {
 			isa = PBXGroup;
 			children = (
-				E8D0A1A92AE1A0C30045C1E6 /* Keys.plist */,
 				E85B8E262AD5D57B00F8BF5A /* UtterApp.swift */,
 				E82A7E5D2ADEA11600F1DF2B /* Audio.swift */,
 				E82A7E622ADEB1DC00F1DF2B /* AudioBox.swift */,
@@ -304,7 +301,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8D0A1AA2AE1A0C30045C1E6 /* Keys.plist in Resources */,
 				E85B8E2E2AD5D57D00F8BF5A /* Preview Assets.xcassets in Resources */,
 				E85B8E2B2AD5D57D00F8BF5A /* Assets.xcassets in Resources */,
 			);
