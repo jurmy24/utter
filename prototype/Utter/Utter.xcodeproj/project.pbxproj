@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		E82A7E5E2ADEA11600F1DF2B /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82A7E5D2ADEA11600F1DF2B /* Audio.swift */; };
 		E82A7E602ADEA39D00F1DF2B /* SpeechRecognition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82A7E5F2ADEA39D00F1DF2B /* SpeechRecognition.swift */; };
-		E82A7E612ADEAEC200F1DF2B /* audio.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E82A7E5B2ADEA0EA00F1DF2B /* audio.mp3 */; };
 		E82A7E632ADEB1DC00F1DF2B /* AudioBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82A7E622ADEB1DC00F1DF2B /* AudioBox.swift */; };
 		E82A7E652ADEBE4500F1DF2B /* AudioStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82A7E642ADEBE4500F1DF2B /* AudioStatus.swift */; };
 		E82FF7582ADAC16500BE59C8 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FF7572ADAC16500BE59C8 /* OnboardingView.swift */; };
@@ -24,6 +23,9 @@
 		E85B8E532AD5E5FB00F8BF5A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85B8E522AD5E5FB00F8BF5A /* LoginView.swift */; };
 		E85B8E562AD5EA7700F8BF5A /* TandemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85B8E552AD5EA7700F8BF5A /* TandemListView.swift */; };
 		E8D0A19E2AE13AE70045C1E6 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D0A19D2AE13AE70045C1E6 /* SpeechRecognizer.swift */; };
+		E8D0A1A52AE192930045C1E6 /* OpenAISwift in Frameworks */ = {isa = PBXBuildFile; productRef = E8D0A1A42AE192930045C1E6 /* OpenAISwift */; };
+		E8D0A1A72AE199230045C1E6 /* ChatGPTCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D0A1A62AE199230045C1E6 /* ChatGPTCaller.swift */; };
+		E8D0A1AA2AE1A0C30045C1E6 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = E8D0A1A92AE1A0C30045C1E6 /* Keys.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +46,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E82A7E5B2ADEA0EA00F1DF2B /* audio.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = audio.mp3; sourceTree = "<group>"; };
 		E82A7E5D2ADEA11600F1DF2B /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 		E82A7E5F2ADEA39D00F1DF2B /* SpeechRecognition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognition.swift; sourceTree = "<group>"; };
 		E82A7E622ADEB1DC00F1DF2B /* AudioBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBox.swift; sourceTree = "<group>"; };
@@ -64,6 +65,8 @@
 		E85B8E522AD5E5FB00F8BF5A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		E85B8E552AD5EA7700F8BF5A /* TandemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TandemListView.swift; sourceTree = "<group>"; };
 		E8D0A19D2AE13AE70045C1E6 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
+		E8D0A1A62AE199230045C1E6 /* ChatGPTCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGPTCaller.swift; sourceTree = "<group>"; };
+		E8D0A1A92AE1A0C30045C1E6 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8D0A1A52AE192930045C1E6 /* OpenAISwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,13 +165,14 @@
 		E8F38FFA2ADC10E1008CC27C /* sources */ = {
 			isa = PBXGroup;
 			children = (
-				E82A7E5B2ADEA0EA00F1DF2B /* audio.mp3 */,
+				E8D0A1A92AE1A0C30045C1E6 /* Keys.plist */,
 				E85B8E262AD5D57B00F8BF5A /* UtterApp.swift */,
 				E82A7E5D2ADEA11600F1DF2B /* Audio.swift */,
 				E82A7E622ADEB1DC00F1DF2B /* AudioBox.swift */,
 				E82A7E642ADEBE4500F1DF2B /* AudioStatus.swift */,
 				E82A7E5F2ADEA39D00F1DF2B /* SpeechRecognition.swift */,
 				E8D0A19D2AE13AE70045C1E6 /* SpeechRecognizer.swift */,
+				E8D0A1A62AE199230045C1E6 /* ChatGPTCaller.swift */,
 				E85B8E542AD5E80100F8BF5A /* views */,
 				E8F38FFE2ADC12D6008CC27C /* models */,
 			);
@@ -206,6 +211,7 @@
 			);
 			name = Utter;
 			packageProductDependencies = (
+				E8D0A1A42AE192930045C1E6 /* OpenAISwift */,
 			);
 			productName = Utter;
 			productReference = E85B8E232AD5D57B00F8BF5A /* Utter.app */;
@@ -280,6 +286,7 @@
 			);
 			mainGroup = E85B8E1A2AD5D57B00F8BF5A;
 			packageReferences = (
+				E8D0A1A32AE192930045C1E6 /* XCRemoteSwiftPackageReference "OpenAISwift" */,
 			);
 			productRefGroup = E85B8E242AD5D57B00F8BF5A /* Products */;
 			projectDirPath = "";
@@ -297,7 +304,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E82A7E612ADEAEC200F1DF2B /* audio.mp3 in Resources */,
+				E8D0A1AA2AE1A0C30045C1E6 /* Keys.plist in Resources */,
 				E85B8E2E2AD5D57D00F8BF5A /* Preview Assets.xcassets in Resources */,
 				E85B8E2B2AD5D57D00F8BF5A /* Assets.xcassets in Resources */,
 			);
@@ -328,6 +335,7 @@
 				E85B8E532AD5E5FB00F8BF5A /* LoginView.swift in Sources */,
 				E85B8E292AD5D57B00F8BF5A /* ContentView.swift in Sources */,
 				E82A7E632ADEB1DC00F1DF2B /* AudioBox.swift in Sources */,
+				E8D0A1A72AE199230045C1E6 /* ChatGPTCaller.swift in Sources */,
 				E82FF75A2ADAC98700BE59C8 /* SpeakerView.swift in Sources */,
 				E82A7E602ADEA39D00F1DF2B /* SpeechRecognition.swift in Sources */,
 				E85B8E272AD5D57B00F8BF5A /* UtterApp.swift in Sources */,
@@ -665,6 +673,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E8D0A1A32AE192930045C1E6 /* XCRemoteSwiftPackageReference "OpenAISwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/adamrushy/OpenAISwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E8D0A1A42AE192930045C1E6 /* OpenAISwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E8D0A1A32AE192930045C1E6 /* XCRemoteSwiftPackageReference "OpenAISwift" */;
+			productName = OpenAISwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E85B8E1B2AD5D57B00F8BF5A /* Project object */;
 }
