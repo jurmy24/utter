@@ -60,6 +60,7 @@ class AudioBox: NSObject, ObservableObject {
     func playSound(fileName: String, type: String) -> Void {
         // Check if the sound file exists in the app bundle.
         // 'Bundle.main.path' is used to find the path for a resource (the sound file) in the main bundle of the app.
+        
         if let path = Bundle.main.path(forResource: fileName, ofType: type){
             do{
                 // Attempt to initialize 'audioPlayer' with the sound file located at the path.

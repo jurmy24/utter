@@ -9,11 +9,13 @@ import SwiftUI
 import AVFoundation
 
 struct SpeakerView: View {
-    @State private var isTalking: Bool = false
-    @State var lyrics = ""
+    //    @State private var isTalking: Bool = false
+    @State var transcript = ""
     @ObservedObject var audioBox = AudioBox()
     @State var hasMicAccess = false
     @State var displayNotification = false
+    @StateObject var speechRecognizer = SpeechRecognizer()
+    @State private var isRecording = false
     
     var body: some View {
         
@@ -24,38 +26,34 @@ struct SpeakerView: View {
                     .resizable()
                     .frame(width: 50, height: 50)
                     .padding()
-                
                 VStack(alignment: .leading) {
                     Text("Tim")
                         .font(.headline)
-                    Text(isTalking ? "Speaking..." : "Connected")
-                        .foregroundColor(isTalking ? .green : .gray)
-                        .font(.subheadline)
                 }
             }
-            
-            Button(action: {
-                isTalking.toggle()
-                if audioBox.status == .stopped {
-                    if hasMicAccess{
-                        audioBox.record()
-                    }else{
-                        requestMicrophoneAccess()
-                    }
-                    
-                } else {
-                    audioBox.stopRecording()
-                    playSound(sound: "audio", type: "mp3")
-                }
-            }) {
-                Text(isTalking ? "Release to End Talking" : "Press and Hold to Talk")
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(isTalking ? Color.red : Color.green)
-                    .cornerRadius(10)
-            }
-            .padding()
-            Text(lyrics).foregroundColor(.black)
+            ZStack {
+                        // The Circle view acts as the background of the button.
+                        Circle()
+                            .fill(isRecording ? Color.red : Color.green) // Changes color based on recording status.
+                            .frame(width: 100, height: 100) // Specifies the size of the circle.
+                        
+                        // The Text view displays the button's label.
+                        Text(isRecording ? "Recording" : "Push to Talk")
+                            .foregroundColor(.white) // Makes the text color white for better contrast.
+                    }.gesture(DragGesture(minimumDistance: 0) // Gesture to detect touch down and up
+                        .onChanged({ _ in
+                            
+                            if !self.isRecording {
+                                self.startRecording()
+                            }
+                        })
+                        .onEnded({ _ in
+                            
+                            self.endRecording()
+                        })
+            )
+
+            Text(transcript).foregroundColor(.black)
         }
         .padding()
         .background(
@@ -63,42 +61,40 @@ struct SpeakerView: View {
                 .fill(Color(.systemBackground))
                 .shadow(radius: 10)
             
-            
         )
         .padding()
-        .onAppear{
-            //playSound(sound: "audio", type: "mp3") // Currently not playing the audio so I don't confuse the recording
-//            requestPermission { result in
-//                lyrics = result
+        .onAppear{}.onDisappear{}
+//        .alert(isPresented: $displayNotification){
+//            Alert(title: Text("Requires microphone access"),
+//                  message: Text("You're screwed"),
+//                  dismissButton: .default(Text("OK")))
+//        }
+    }
+    
+    private func startRecording(){
+        speechRecognizer.resetTranscript()
+        speechRecognizer.startTranscribing()
+        isRecording = true
+    }
+    
+    private func endRecording(){
+        speechRecognizer.stopTranscribing()
+        transcript = speechRecognizer.transcript
+        isRecording = false
+    }
+    
+//    private func requestMicrophoneAccess(){
+//        let session = AVAudioSession.sharedInstance()
+//        session.requestRecordPermission { granted in
+//            hasMicAccess = granted
+//            if granted {
+//                audioBox.record()
+//            }else{
+//                displayNotification = true
 //            }
-            audioBox.setupRecorder() // Initialize the recorder
-        }
-        .alert(isPresented: $displayNotification){
-            Alert(title: Text("Requires microphone access"),
-                  message: Text("You're screwed"),
-                  dismissButton: .default(Text("OK")))
-        }
-        
-        
-        
-    }
-    
-    
-    private func requestMicrophoneAccess(){
-        let session = AVAudioSession.sharedInstance()
-        session.requestRecordPermission { granted in
-            hasMicAccess = granted
-            if granted {
-                audioBox.record()
-            }else{
-                displayNotification = true
-            }
-            
-        }
-    }
-    
-    
-    
+//            
+//        }
+//    }
 }
 
 struct SpeakerView_Previews: PreviewProvider {
@@ -106,3 +102,4 @@ struct SpeakerView_Previews: PreviewProvider {
         SpeakerView()
     }
 }
+

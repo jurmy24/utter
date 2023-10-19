@@ -30,7 +30,7 @@ struct OnboardingView: View {
                         Image(systemName: "chevron.right")
                     }.foregroundColor(Color(.white))
                 }
-            }
+            }.padding()
         }
     }
 }
