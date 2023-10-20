@@ -3,6 +3,8 @@ import time
 
 if __name__ == "__main__":
     while True:
+        conversation_start = chatbot.start_conversation()
+        synthesis.synthesize_speech(conversation_start)
         # TODO: See if live transcription possible for faster responses
         
         recording = asr.record_audio()
