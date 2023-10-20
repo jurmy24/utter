@@ -80,7 +80,7 @@ while True:
     total_conversation_length = sum(len(message["content"].split()) + 1 for message in messages)
 
     # Summarize the conversation history (excluding the admin prompt)
-    if total_conversation_length >= 200:
+    if total_conversation_length >= 3000:
         summary = summarize_conversation_history(messages)
         messages = list(filter(test_for_system_role, messages))
         conversation_to_summarize = list(filter(test_for_system_role, conversation_to_summarize))
