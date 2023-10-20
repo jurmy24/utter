@@ -49,8 +49,19 @@ def chat(content: str) -> str:
     messages.append({"role": "assistant", "content": chat_response})
     return chat_response
 
+def start_conversation() -> str:
+    # Fetch a greeting from Tim without any prior user message.
+    messages.append({"role": "user", "content": "Please greet me and say hi so we can start the convesation."})
+    chat_response = send_message(messages)
+    # Append the response to the messages with the role "assistant" to store the chat history.
+    messages.append({"role": "assistant", "content": chat_response})
+    return chat_response
+
 if __name__ == "__main__":
-    # Start an infinite loop to continue the conversation with the user.
+    # Start the conversation with a greeting from Tim.
+    start_greeting = start_conversation()
+    print(start_greeting)
+    # Continue the conversation with the user.
     while True:
         # User creates content by writing to terminal and this is appended to messages
         content = input("User: ")
