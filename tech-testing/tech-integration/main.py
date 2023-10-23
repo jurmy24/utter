@@ -2,9 +2,9 @@ from modules import chatbot, asr, synthesis
 import time
 
 if __name__ == "__main__":
+    conversation_start = chatbot.start_conversation()
+    synthesis.synthesize_speech(conversation_start)
     while True:
-        conversation_start = chatbot.start_conversation()
-        synthesis.synthesize_speech(conversation_start)
         # TODO: See if live transcription possible for faster responses
         
         recording = asr.record_audio()
