@@ -51,7 +51,6 @@ struct SpeakerView: View {
                     }
                 })
                     .onEnded({ _ in
-                        
                         self.endRecording()
                         self.sendMessage()
                     })
@@ -69,6 +68,7 @@ struct SpeakerView: View {
         .padding()
         .onAppear{
             chatGPTCaller.setup()
+            audioBox.setupUtterance()
         }.onDisappear{}
         //        .alert(isPresented: $displayNotification){
         //            Alert(title: Text("Requires microphone access"),
@@ -98,8 +98,13 @@ struct SpeakerView: View {
             DispatchQueue.main.async{
                 self.text = response
                 print(response)
+                self.speakResponse()
             }
         }
+    }
+    
+    private func speakResponse(){
+        audioBox.generateUtterance(speechText: self.text)
     }
     
     //    private func requestMicrophoneAccess(){

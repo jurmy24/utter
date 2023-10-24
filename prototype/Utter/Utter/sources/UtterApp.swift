@@ -34,9 +34,13 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             // If there's an error in the 'try' block, it's caught here, and we print the error description.
             print("AVAudioSession configuration error: \(error.localizedDescription)")
         }
+        
         // Returning true to indicate that the app has completed its launching processes successfully.
         return true
+        
     }
+    
+    
 }
 
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E809B3152AE6C6BB000385C6 /* VoiceSynthesis.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809B3142AE6C6BB000385C6 /* VoiceSynthesis.swift */; };
 		E82A7E5E2ADEA11600F1DF2B /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82A7E5D2ADEA11600F1DF2B /* Audio.swift */; };
 		E82A7E602ADEA39D00F1DF2B /* SpeechRecognition.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82A7E5F2ADEA39D00F1DF2B /* SpeechRecognition.swift */; };
 		E82A7E632ADEB1DC00F1DF2B /* AudioBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82A7E622ADEB1DC00F1DF2B /* AudioBox.swift */; };
@@ -22,6 +23,11 @@
 		E85B8E442AD5D57D00F8BF5A /* UtterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85B8E432AD5D57D00F8BF5A /* UtterUITestsLaunchTests.swift */; };
 		E85B8E532AD5E5FB00F8BF5A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85B8E522AD5E5FB00F8BF5A /* LoginView.swift */; };
 		E85B8E562AD5EA7700F8BF5A /* TandemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85B8E552AD5EA7700F8BF5A /* TandemListView.swift */; };
+		E877DE5D2AE7D2C700EFA0ED /* AWSAPIGateway in Frameworks */ = {isa = PBXBuildFile; productRef = E877DE5C2AE7D2C700EFA0ED /* AWSAPIGateway */; };
+		E877DE5F2AE7D2C700EFA0ED /* AWSAppleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = E877DE5E2AE7D2C700EFA0ED /* AWSAppleSignIn */; };
+		E877DE612AE7D2C700EFA0ED /* AWSAuthCore in Frameworks */ = {isa = PBXBuildFile; productRef = E877DE602AE7D2C700EFA0ED /* AWSAuthCore */; };
+		E877DE632AE7D2C700EFA0ED /* AWSAuthUI in Frameworks */ = {isa = PBXBuildFile; productRef = E877DE622AE7D2C700EFA0ED /* AWSAuthUI */; };
+		E877DE652AE7D2C700EFA0ED /* AWSAutoScaling in Frameworks */ = {isa = PBXBuildFile; productRef = E877DE642AE7D2C700EFA0ED /* AWSAutoScaling */; };
 		E8D0A19E2AE13AE70045C1E6 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D0A19D2AE13AE70045C1E6 /* SpeechRecognizer.swift */; };
 		E8D0A1A52AE192930045C1E6 /* OpenAISwift in Frameworks */ = {isa = PBXBuildFile; productRef = E8D0A1A42AE192930045C1E6 /* OpenAISwift */; };
 		E8D0A1A72AE199230045C1E6 /* ChatGPTCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D0A1A62AE199230045C1E6 /* ChatGPTCaller.swift */; };
@@ -45,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E809B3142AE6C6BB000385C6 /* VoiceSynthesis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceSynthesis.swift; sourceTree = "<group>"; };
 		E82A7E5D2ADEA11600F1DF2B /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 		E82A7E5F2ADEA39D00F1DF2B /* SpeechRecognition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognition.swift; sourceTree = "<group>"; };
 		E82A7E622ADEB1DC00F1DF2B /* AudioBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBox.swift; sourceTree = "<group>"; };
@@ -72,7 +79,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E877DE5D2AE7D2C700EFA0ED /* AWSAPIGateway in Frameworks */,
+				E877DE612AE7D2C700EFA0ED /* AWSAuthCore in Frameworks */,
+				E877DE5F2AE7D2C700EFA0ED /* AWSAppleSignIn in Frameworks */,
+				E877DE652AE7D2C700EFA0ED /* AWSAutoScaling in Frameworks */,
 				E8D0A1A52AE192930045C1E6 /* OpenAISwift in Frameworks */,
+				E877DE632AE7D2C700EFA0ED /* AWSAuthUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,6 +182,7 @@
 				E82A7E5F2ADEA39D00F1DF2B /* SpeechRecognition.swift */,
 				E8D0A19D2AE13AE70045C1E6 /* SpeechRecognizer.swift */,
 				E8D0A1A62AE199230045C1E6 /* ChatGPTCaller.swift */,
+				E809B3142AE6C6BB000385C6 /* VoiceSynthesis.swift */,
 				E85B8E542AD5E80100F8BF5A /* views */,
 				E8F38FFE2ADC12D6008CC27C /* models */,
 			);
@@ -209,6 +222,11 @@
 			name = Utter;
 			packageProductDependencies = (
 				E8D0A1A42AE192930045C1E6 /* OpenAISwift */,
+				E877DE5C2AE7D2C700EFA0ED /* AWSAPIGateway */,
+				E877DE5E2AE7D2C700EFA0ED /* AWSAppleSignIn */,
+				E877DE602AE7D2C700EFA0ED /* AWSAuthCore */,
+				E877DE622AE7D2C700EFA0ED /* AWSAuthUI */,
+				E877DE642AE7D2C700EFA0ED /* AWSAutoScaling */,
 			);
 			productName = Utter;
 			productReference = E85B8E232AD5D57B00F8BF5A /* Utter.app */;
@@ -284,6 +302,7 @@
 			mainGroup = E85B8E1A2AD5D57B00F8BF5A;
 			packageReferences = (
 				E8D0A1A32AE192930045C1E6 /* XCRemoteSwiftPackageReference "OpenAISwift" */,
+				E877DE5B2AE7D2C600EFA0ED /* XCRemoteSwiftPackageReference "aws-sdk-ios-spm" */,
 			);
 			productRefGroup = E85B8E242AD5D57B00F8BF5A /* Products */;
 			projectDirPath = "";
@@ -337,6 +356,7 @@
 				E85B8E272AD5D57B00F8BF5A /* UtterApp.swift in Sources */,
 				E82A7E652ADEBE4500F1DF2B /* AudioStatus.swift in Sources */,
 				E82FF7582ADAC16500BE59C8 /* OnboardingView.swift in Sources */,
+				E809B3152AE6C6BB000385C6 /* VoiceSynthesis.swift in Sources */,
 				E85B8E562AD5EA7700F8BF5A /* TandemListView.swift in Sources */,
 				E82A7E5E2ADEA11600F1DF2B /* Audio.swift in Sources */,
 			);
@@ -507,6 +527,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -541,6 +562,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -671,6 +693,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		E877DE5B2AE7D2C600EFA0ED /* XCRemoteSwiftPackageReference "aws-sdk-ios-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/aws-amplify/aws-sdk-ios-spm";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.33.4;
+			};
+		};
 		E8D0A1A32AE192930045C1E6 /* XCRemoteSwiftPackageReference "OpenAISwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/adamrushy/OpenAISwift.git";
@@ -682,6 +712,31 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E877DE5C2AE7D2C700EFA0ED /* AWSAPIGateway */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E877DE5B2AE7D2C600EFA0ED /* XCRemoteSwiftPackageReference "aws-sdk-ios-spm" */;
+			productName = AWSAPIGateway;
+		};
+		E877DE5E2AE7D2C700EFA0ED /* AWSAppleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E877DE5B2AE7D2C600EFA0ED /* XCRemoteSwiftPackageReference "aws-sdk-ios-spm" */;
+			productName = AWSAppleSignIn;
+		};
+		E877DE602AE7D2C700EFA0ED /* AWSAuthCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E877DE5B2AE7D2C600EFA0ED /* XCRemoteSwiftPackageReference "aws-sdk-ios-spm" */;
+			productName = AWSAuthCore;
+		};
+		E877DE622AE7D2C700EFA0ED /* AWSAuthUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E877DE5B2AE7D2C600EFA0ED /* XCRemoteSwiftPackageReference "aws-sdk-ios-spm" */;
+			productName = AWSAuthUI;
+		};
+		E877DE642AE7D2C700EFA0ED /* AWSAutoScaling */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E877DE5B2AE7D2C600EFA0ED /* XCRemoteSwiftPackageReference "aws-sdk-ios-spm" */;
+			productName = AWSAutoScaling;
+		};
 		E8D0A1A42AE192930045C1E6 /* OpenAISwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E8D0A1A32AE192930045C1E6 /* XCRemoteSwiftPackageReference "OpenAISwift" */;
