@@ -9,15 +9,13 @@ import SwiftUI
 import AVFoundation
 
 struct SpeakerView: View {
-    // @State private var isTalking: Bool = false
-    @State var transcript = ""
-    @ObservedObject var audioBox = AudioBox()
-    @State var hasMicAccess = false
-    @State var displayNotification = false
-    @StateObject var speechRecognizer = SpeechRecognizer()
-    @State private var isRecording = false
+    @ObservedObject var speechRecognizer = SpeechRecognizer()
     @ObservedObject var chatGPTCaller = ChatGPTCaller()
-    @State var text = ""
+    @ObservedObject var audioBox = AudioBox()
+    
+    @State var userTranscript = ""
+    @State private var isRecording = false
+    @State var botResponse = ""
     @State var models = [String]()
     
     var body: some View {
@@ -56,7 +54,7 @@ struct SpeakerView: View {
                     })
             )
             
-            Text(self.text).foregroundColor(.black)
+            Text(self.botResponse).foregroundColor(.black)
         }
         .padding()
         .background(
@@ -70,11 +68,6 @@ struct SpeakerView: View {
             chatGPTCaller.setup()
             audioBox.setupUtterance()
         }.onDisappear{}
-        //        .alert(isPresented: $displayNotification){
-        //            Alert(title: Text("Requires microphone access"),
-        //                  message: Text("You're screwed"),
-        //                  dismissButton: .default(Text("OK")))
-        //        }
     }
     
     private func startRecording(){
@@ -85,40 +78,26 @@ struct SpeakerView: View {
     
     private func endRecording(){
         speechRecognizer.stopTranscribing()
-        transcript = speechRecognizer.transcript
+        self.userTranscript = speechRecognizer.transcript
         isRecording = false
     }
     
     private func sendMessage(){
-        guard !transcript.trimmingCharacters(in: .whitespaces).isEmpty else{
+        guard !self.userTranscript.trimmingCharacters(in: .whitespaces).isEmpty else{
             return
         }
-        print(transcript)
-        chatGPTCaller.send(text: transcript){  response in
+        print(self.userTranscript)
+        chatGPTCaller.send(text: self.userTranscript){response in
             DispatchQueue.main.async{
-                self.text = response
-                print(response)
+                self.botResponse = response
                 self.speakResponse()
             }
         }
     }
     
     private func speakResponse(){
-        audioBox.generateUtterance(speechText: self.text)
+        audioBox.generateUtterance(speechText: self.botResponse)
     }
-    
-    //    private func requestMicrophoneAccess(){
-    //        let session = AVAudioSession.sharedInstance()
-    //        session.requestRecordPermission { granted in
-    //            hasMicAccess = granted
-    //            if granted {
-    //                audioBox.record()
-    //            }else{
-    //                displayNotification = true
-    //            }
-    //
-    //        }
-    //    }
 }
 
 struct SpeakerView_Previews: PreviewProvider {

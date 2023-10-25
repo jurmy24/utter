@@ -10,7 +10,6 @@ import AVFoundation
 import Speech
 import SwiftUI
 
-
 // A helper class (actually an actor) for transcribing speech to text using SFSpeechRecognizer and AVAudioEngine.
 actor SpeechRecognizer: ObservableObject {
     

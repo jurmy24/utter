@@ -18,16 +18,6 @@ final class ChatGPTCaller: ObservableObject {
     }
     
     func send(text: String, completion: @escaping (String) -> Void){
-//        client?.sendCompletion(with: text, maxTokens: 60, completionHandler: {
-//            result in
-//            switch result {
-//            case .success(let model):
-//                let output = model.choices.first?.text ?? ""
-//                completion(output)
-//            case .failure:
-//                break
-//            }
-//        })
         
         client?.sendCompletion(with: text) { result in // Result<OpenAI, OpenAIError>
             print(result)
@@ -39,6 +29,5 @@ final class ChatGPTCaller: ObservableObject {
                 print(failure.localizedDescription)
             }
         }
-        
     }
 }
