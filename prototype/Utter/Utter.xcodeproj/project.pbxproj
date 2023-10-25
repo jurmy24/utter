@@ -11,6 +11,7 @@
 		E82A7E652ADEBE4500F1DF2B /* AudioStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82A7E642ADEBE4500F1DF2B /* AudioStatus.swift */; };
 		E82FF7582ADAC16500BE59C8 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FF7572ADAC16500BE59C8 /* OnboardingView.swift */; };
 		E82FF75A2ADAC98700BE59C8 /* SpeakerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FF7592ADAC98700BE59C8 /* SpeakerView.swift */; };
+		E83EE6772AE9490500EF5D06 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EE6762AE9490500EF5D06 /* AudioManager.swift */; };
 		E85B8E272AD5D57B00F8BF5A /* UtterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85B8E262AD5D57B00F8BF5A /* UtterApp.swift */; };
 		E85B8E292AD5D57B00F8BF5A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85B8E282AD5D57B00F8BF5A /* ContentView.swift */; };
 		E85B8E2B2AD5D57D00F8BF5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E85B8E2A2AD5D57D00F8BF5A /* Assets.xcassets */; };
@@ -52,6 +53,7 @@
 		E82A7E642ADEBE4500F1DF2B /* AudioStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioStatus.swift; sourceTree = "<group>"; };
 		E82FF7572ADAC16500BE59C8 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		E82FF7592ADAC98700BE59C8 /* SpeakerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerView.swift; sourceTree = "<group>"; };
+		E83EE6762AE9490500EF5D06 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		E85B8E232AD5D57B00F8BF5A /* Utter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Utter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E85B8E262AD5D57B00F8BF5A /* UtterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtterApp.swift; sourceTree = "<group>"; };
 		E85B8E282AD5D57B00F8BF5A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -187,10 +189,11 @@
 		E8F38FFE2ADC12D6008CC27C /* models */ = {
 			isa = PBXGroup;
 			children = (
-				E82A7E622ADEB1DC00F1DF2B /* AudioBox.swift */,
-				E82A7E642ADEBE4500F1DF2B /* AudioStatus.swift */,
 				E8D0A19D2AE13AE70045C1E6 /* SpeechRecognizer.swift */,
 				E8D0A1A62AE199230045C1E6 /* ChatGPTCaller.swift */,
+				E82A7E622ADEB1DC00F1DF2B /* AudioBox.swift */,
+				E82A7E642ADEBE4500F1DF2B /* AudioStatus.swift */,
+				E83EE6762AE9490500EF5D06 /* AudioManager.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 				E85B8E272AD5D57B00F8BF5A /* UtterApp.swift in Sources */,
 				E82A7E652ADEBE4500F1DF2B /* AudioStatus.swift in Sources */,
 				E82FF7582ADAC16500BE59C8 /* OnboardingView.swift in Sources */,
+				E83EE6772AE9490500EF5D06 /* AudioManager.swift in Sources */,
 				E85B8E562AD5EA7700F8BF5A /* TandemListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

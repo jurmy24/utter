@@ -9,18 +9,17 @@ import Foundation
 import OpenAISwift
 
 final class ChatGPTCaller: ObservableObject {
-    init() {}
+//    init() {}
     private var client: OpenAISwift?
     
     func setup(){
-        let key = ""
+        let key = "sk-"
         client = OpenAISwift(config: OpenAISwift.Config.makeDefaultOpenAI(apiKey: key))
     }
     
     func send(text: String, completion: @escaping (String) -> Void){
         
         client?.sendCompletion(with: text) { result in // Result<OpenAI, OpenAIError>
-            print(result)
             switch result {
             case .success(let success):
                 let output = success.choices?.first?.text ?? ""

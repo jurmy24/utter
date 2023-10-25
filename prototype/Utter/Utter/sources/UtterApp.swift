@@ -23,24 +23,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:
                      [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
-        // Getting the shared audio session instance, which allows configuration of audio behavior.
-        let session = AVAudioSession.sharedInstance()
-        do {
-            // Attempting to set the audio session category to both play and record audio, with audio output defaulting to the device's speaker.
-            try session.setCategory(.playAndRecord, options: .defaultToSpeaker)
-            // Activating the audio session, making the audio configurations active.
-            try session.setActive(true)
-        }catch{
-            // If there's an error in the 'try' block, it's caught here, and we print the error description.
-            print("AVAudioSession configuration error: \(error.localizedDescription)")
-        }
+        AudioManager.sharedAudio.setupAudioSession()
         
         // Returning true to indicate that the app has completed its launching processes successfully.
         return true
-        
     }
-    
-    
 }
 
 

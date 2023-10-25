@@ -13,15 +13,14 @@ struct SpeakerView: View {
     @ObservedObject var chatGPTCaller = ChatGPTCaller()
     @ObservedObject var audioBox = AudioBox()
     
-    @State var userTranscript = ""
     @State private var isRecording = false
+    @State var userTranscript = ""
     @State var botResponse = ""
-    @State var models = [String]()
+    @State var models = [String]() // to eventually store the chat log
     
     var body: some View {
         
         VStack(spacing: 20) {
-            
             HStack {
                 Image(systemName: "person.fill")
                     .resizable()
@@ -41,9 +40,9 @@ struct SpeakerView: View {
                 // The Text view displays the button's label.
                 Text(isRecording ? "Recording" : "Push to Talk")
                     .foregroundColor(.white) // Makes the text color white for better contrast.
+                
             }.gesture(DragGesture(minimumDistance: 0) // Gesture to detect touch down and up
                 .onChanged({ _ in
-                    
                     if !self.isRecording {
                         self.startRecording()
                     }
@@ -65,38 +64,39 @@ struct SpeakerView: View {
         )
         .padding()
         .onAppear{
-            chatGPTCaller.setup()
-            audioBox.setupUtterance()
+            self.chatGPTCaller.setup()
         }.onDisappear{}
     }
     
     private func startRecording(){
-        speechRecognizer.resetTranscript()
-        speechRecognizer.startTranscribing()
-        isRecording = true
+        self.speechRecognizer.resetTranscript()
+        self.speechRecognizer.startTranscribing()
+        self.isRecording = true
     }
     
     private func endRecording(){
-        speechRecognizer.stopTranscribing()
+        self.speechRecognizer.stopTranscribing()
         self.userTranscript = speechRecognizer.transcript
-        isRecording = false
+//        self.userTranscript = "Hello, you are a boss."
+        self.isRecording = false
     }
     
     private func sendMessage(){
         guard !self.userTranscript.trimmingCharacters(in: .whitespaces).isEmpty else{
             return
         }
-        print(self.userTranscript)
-        chatGPTCaller.send(text: self.userTranscript){response in
+        print("User: \(self.userTranscript)")
+        self.chatGPTCaller.send(text: self.userTranscript){response in
             DispatchQueue.main.async{
                 self.botResponse = response
+                print("Tim: \(self.botResponse)")
                 self.speakResponse()
             }
         }
     }
     
     private func speakResponse(){
-        audioBox.generateUtterance(speechText: self.botResponse)
+        self.audioBox.generateUtterance(speechText: self.botResponse)
     }
 }
 

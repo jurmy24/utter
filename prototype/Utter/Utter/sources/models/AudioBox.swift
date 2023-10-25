@@ -11,39 +11,57 @@ import AVFoundation
 // Define a class 'AudioBox' that inherits from NSObject and conforms to the ObservableObject protocol from SwiftUI, which will allow UI updates based on changes to its properties.
 class AudioBox: NSObject, ObservableObject {
     
-    // Define optional AVAudioRecorder and AVAudioPlayer objects
-    var audioRecorder: AVAudioRecorder?
-    var audioPlayer: AVAudioPlayer?
+    // Define an AVSpeechSynthesizer object and an utterance object
     var synthesizer: AVSpeechSynthesizer?
+    var utterance: AVSpeechUtterance?
+    var synthVoice: AVSpeechSynthesisVoice?
     
-    func setupUtterance() -> Void {
-        // Create a speech synthesizer.
-        self.synthesizer = AVSpeechSynthesizer()
-        self.synthesizer?.usesApplicationAudioSession = false
-    }
+//    func setupUtterance() -> Void {
+//        // Create a speech synthesizer.
+//        
+//        
+////        self.synthesizer?.usesApplicationAudioSession = false
+//        
+////        let voices = AVSpeechSynthesisVoice.speechVoices()
+////        for voice in voices {
+////            if voice.name == "Daniel" {    // select e.g. Daniel voice
+////                self.synthVoice = voice
+////            }
+////        }
+//    }
     
     func generateUtterance(speechText: String) -> Void{
+        
+        self.synthesizer = AVSpeechSynthesizer()
+        
+        // Here I set up the audioSession for playing!
+        AudioManager.sharedAudio.setupForPlaying()
+        
+        // See if this gets rid of some error messages
+        AVSpeechSynthesisVoice.speechVoices()
+
         // Create an utterance.
-        let utterance = AVSpeechUtterance(string: speechText)
+        self.utterance = AVSpeechUtterance(string: speechText)
         
         // Choose a voice using a language code
-        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        self.utterance?.voice = AVSpeechSynthesisVoice(language: "en-US")
         
         // Choose a voice using an identifier
-        utterance.voice = AVSpeechSynthesisVoice(identifier: AVSpeechSynthesisVoiceIdentifierAlex)
+//        self.utterance?.voice = self.synthVoice
         
         // Configure the utterance.
-        utterance.rate = AVSpeechUtteranceDefaultSpeechRate
-        utterance.pitchMultiplier = 1.5
-        utterance.pitchMultiplier = 1
-        utterance.volume = 2
+        self.utterance?.rate = AVSpeechUtteranceDefaultSpeechRate
+        self.utterance?.pitchMultiplier = 1
+        self.utterance?.volume = 1.0
         //        utterance.postUtteranceDelay = 0.2
         
         // Tell the synthesizer to speak the utterance.
         DispatchQueue.main.async {
-            self.synthesizer?.speak(utterance)
+            self.synthesizer?.speak(self.utterance!)
         }
+        
     }
+    
 }
 
 
