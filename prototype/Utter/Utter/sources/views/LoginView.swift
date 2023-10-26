@@ -10,41 +10,90 @@ import SwiftUI
 struct LoginView: View {
     @State private var username: String = ""
     @State private var password: String = ""
+    let screenWidth = UIScreen.main.bounds.width
+    @AppStorage("isLoggedIn") var isLoggedIn = false
     
     var body: some View {
         
-        NavigationView {
+        let accentColor = #colorLiteral(red: 0.3529040813, green: 0.3529704213, blue: 1, alpha: 1)
+        let fieldHeight: CGFloat = 50 // adjust this to control the height
+        
+        ZStack{
+            
+            SlidingBackgroundView()
+            
             VStack {
-                Text("Login")
-                    .font(.largeTitle)
-                    .fontWeight(.semibold)
-                    .padding(.bottom, 20)
-                    .foregroundColor(.accentColor)
                 
+                // Logo
+                Image("UtterLogo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 300, height: 150) // adjust this as per your logo's aspect ratio
+                
+                Text("Login")
+                    .font(.title)
+                    .padding(.bottom, 5)
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            
                 TextField("Username", text: $username)
-                    .padding()
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding(.leading, 10)
+                    .frame(height: fieldHeight)
+                    .background(
+                        Rectangle()
+                            .stroke(Color.white, lineWidth: 1)
+                            .background(Color.white)
+                            .cornerRadius(8)
+                    )
                     .autocapitalization(.none)
                     .disableAutocorrection(true)
+                    .padding(.vertical, 5)
                 
                 SecureField("Password", text: $password)
-                    .padding()
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                NavigationLink(destination: TandemListView()){
-                    Text("Log In")
+                    .padding(.leading, 10)
+                    .frame(height: fieldHeight)
+                    .background(
+                        Rectangle()
+                            .stroke(Color.white, lineWidth: 1)
+                            .background(Color.white)
+                            .cornerRadius(8)
+                    )
+                    .padding(.vertical, 10)
+                    .frame(maxWidth: screenWidth)
+                
+                
+                Button(action: {
+                    isLoggedIn = true
+                }){
+                    Text("Login")
                         .foregroundColor(.white)
                         .padding(.vertical, 12)
-                        .padding(.horizontal, 32)
-                        .background(Color.purple)
+                        .frame(maxWidth: screenWidth)
+                        .background(Color(accentColor))
                         .cornerRadius(8)
+                        .fontWeight(.bold)
                 }
-                
+                HStack {
+                    Text("Don't have an account? ")
+                        .font(.caption)
+                    + Text("Sign up")
+                        .font(.caption)
+                        .bold()
+                        .underline()
+                    + Text(" now!")
+                        .font(.caption)
+                }
+                .padding(.top, 5)
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
             .padding()
-            .accentColor(.purple)  // Setting the VStack's accent color to white
+            
+            .frame(maxWidth: screenWidth)
         }
     }
 }
+
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {

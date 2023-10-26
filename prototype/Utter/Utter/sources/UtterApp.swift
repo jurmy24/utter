@@ -20,8 +20,16 @@ import AVFoundation // AVFoundation framework provides the audio playback and re
 class AppDelegate: NSObject, UIApplicationDelegate {
     // This function is called after the application has finished launching to perform any final initialization.
     // It receives the application instance and launch options as parameters.
+    @AppStorage("isOnboarding") var isOnboarding = true
+    @AppStorage("isLoggedIn") var isLoggedIn = false
+    
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:
                      [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        
+        // For now we set these to default values to see what it looks like
+        isOnboarding = true
+        isLoggedIn = false
         
         AudioManager.sharedAudio.setupAudioSession()
         
@@ -39,7 +47,11 @@ struct UtterApp: App {
     // The scene property contains the windows and views for the app's user interface.
     var body: some Scene {
         // Creating a window group to host the app's content.
+        
         WindowGroup {
+            
+            
+            
             // The ContentView is the initial view loaded within the window.
             ContentView()
         }

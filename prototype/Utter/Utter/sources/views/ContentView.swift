@@ -11,13 +11,18 @@ import SwiftUI
 
 struct ContentView: View {
     // Appstorage allows the onboarding value to persist when you exit the app too
-    @AppStorage("onboarding") var onboarding = true
+    @AppStorage("isOnboarding") var isOnboarding = true
+    @AppStorage("isLoggedIn") var isLoggedIn = false
     
     var body: some View {
-        if onboarding {
+        if isOnboarding {
             OnboardingView()
         } else{
-            LoginView()
+            if !isLoggedIn{
+                LoginView()
+            } else{
+                TandemListView()
+            }
         }
     }
 }
