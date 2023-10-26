@@ -3,3 +3,4 @@
 .wav
 .mp3
 __pycache__
+conversation_history.json

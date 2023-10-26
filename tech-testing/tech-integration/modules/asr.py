@@ -30,35 +30,57 @@ aai_model = aai.Transcriber()
 warnings.filterwarnings("ignore", category=UserWarning, module='whisper')
 
 """ FUNCTIONS """
+
+
 def record_audio() -> np.array:
     """
-    Recording audio when space is pressed down and returning audio as a numpy array
+    Recording audio with buffer when space is pressed down and returning audio as a numpy array
     """
-
     print("Press and hold the spacebar to start recording. Release to stop and transcribe.")
     
-    # Await spacebar press before continuing
-    keyboard.wait("space")
-    print("Recording started...")
+    buffer_seconds = 0.5
+    buffer_len = int(FS * buffer_seconds * NUM_CHANS)
+    rolling_buffer = np.zeros(buffer_len, dtype=np.float32)
     
-    # Set up the recording, stored as a list
     audio_rec = []
+    post_release_buffer = []
+    is_recording = False
 
-    # Set up a sound device input stream on the computer 
-    stream = sd.InputStream(samplerate=FS, channels=NUM_CHANS)
-
-    # With ensures the stream input is properly managed to avoid issues like memory leaks
-    with stream:
-        # Put audio chunks into the recording while the keyboard is pressed
-        while keyboard.is_pressed("space"):
+    with sd.InputStream(samplerate=FS, channels=NUM_CHANS) as stream:
+        while True:
             audio_chunk, _ = stream.read(FS)
-            audio_rec.extend(audio_chunk)
-    print("Recording done!")
+            
+            # Ensure audio_chunk is 2D, if not, reshape it
+            if len(audio_chunk.shape) == 1:
+                audio_chunk = audio_chunk.reshape(-1, NUM_CHANS)
+            
+            # Determine how much we need to roll and append
+            roll_size = min(audio_chunk.size, buffer_len)
+            
+            # Roll the buffer and append the new chunk
+            rolling_buffer = np.roll(rolling_buffer, -roll_size)
+            rolling_buffer[-roll_size:] = audio_chunk.flatten()[:roll_size]
+            
+            if keyboard.is_pressed("space"):
+                if not is_recording:
+                    print("Recording started...")
+                    audio_rec.extend(rolling_buffer)  # Append the buffer from before pressing
+                    is_recording = True
 
-    # Convert the list to a NumPy array
-    audio_rec = np.array(audio_rec)
+                audio_rec.extend(audio_chunk.flatten())
+            elif is_recording:  # If space was released and it was recording
+                post_release_buffer.extend(audio_chunk.flatten())
+
+                # If we've recorded enough post-release buffer, stop recording
+                if len(post_release_buffer) >= buffer_len*3:
+                    print("Recording done!")
+                    audio_rec.extend(post_release_buffer[:buffer_len])  # Append the post-release buffer
+                    break
+
+    audio_rec = np.array(audio_rec).reshape(-1, NUM_CHANS)
 
     return audio_rec
+
 
 def transcribe_audio(recording: np.array, model: str) -> str:
     """
@@ -78,5 +100,7 @@ def transcribe_audio(recording: np.array, model: str) -> str:
     return transcript
 
 if __name__ == "__main__":
-    recording = record_audio()
-    transcription = transcribe_audio(recording, "whisper")
+    while True:
+        recording = record_audio()
+        transcription = transcribe_audio(recording, "whisper")
+        print(transcription)

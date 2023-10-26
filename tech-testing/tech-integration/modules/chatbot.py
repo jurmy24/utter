@@ -2,11 +2,15 @@
 import os
 import openai
 from dotenv import load_dotenv
+import json
+import time
+
 
 """Setup"""
 # Fetch the openai api key
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
+CONVERSATION_FILE = "conversation_history.json"
 
 # Set model
 MODEL = "gpt-3.5-turbo"
@@ -28,6 +32,12 @@ User: Ah yes, an umbrella.
 Tim: Anyways, how's your day going? Have you been caught in the rain lately?
                """
 
+# Create the admin prompt for the model to adhere to.
+messages = [{"role": "system", "content": admin_prompt}]
+timestamps=[time.time()]
+
+
+
 """Helper Functions"""
 def send_message(messages):
     completion = openai.ChatCompletion.create(
@@ -40,22 +50,72 @@ def send_message(messages):
     # Return the chat response from the API response.
     return completion.choices[0].message["content"]
 
-# Create the admin prompt for the model to adhere to.
-messages = [{"role": "system", "content": admin_prompt}]
+def save_conversation(messages, timestamps):
+    conversation_data = {
+        "messages": messages,
+        "timestamps": timestamps
+    }
+    with open(CONVERSATION_FILE, 'w') as f:
+        json.dump(conversation_data, f)
+
+def load_conversation():
+    if os.path.exists(CONVERSATION_FILE):
+        with open(CONVERSATION_FILE, 'r') as f:
+            return json.load(f)
+    return {"messages":None, "timestamps":None}
+
 
 def chat(content: str) -> str:
     messages.append({"role": "user", "content": content})
-    chat_response = send_message(messages)
-    messages.append({"role": "assistant", "content": chat_response})
-    return chat_response
+    timestamps.append(time.time())
+    response = send_message(messages)
+    messages.append({"role": "assistant", "content": response})
+    timestamps.append(time.time())
 
+    # Saving everything except the system prompt
+    save_conversation(messages[1:], timestamps[1:])
+    return response
+
+
+# Starts the conversation, either by sending the old conversation, or by starting a new one, depending on the time passed.
 def start_conversation() -> str:
-    # Fetch a greeting from Tim without any prior user message.
-    messages.append({"role": "user", "content": "Please greet me and say hi so we can start the convesation."})
-    chat_response = send_message(messages)
-    # Append the response to the messages with the role "assistant" to store the chat history.
-    messages.append({"role": "assistant", "content": chat_response})
-    return chat_response
+    old_conv_data = load_conversation()
+    if old_conv_data["messages"]:
+        old_conv, timestamps_hist = old_conv_data["messages"], old_conv_data["timestamps"]
+        # Check if the last interaction was within the last hour
+        if time.time() - timestamps_hist[-1] <= 3600:  # 3600 seconds = 1 hour
+            # Simplified recap and limit to the last few exchanges
+    
+            recap = "\n".join([msg['content'] for msg in old_conv])
+            history_prompt = f"Recap: {recap}\n\nPlease continue as Tim."
+            recap_message = {
+                "role": "system",
+                "content": history_prompt
+            }
+            messages.append(recap_message)
+            timestamps.append(time.time())
+            
+            # Prompt Tim to greet
+            messages.append({"role": "user", "content": "I'm here again. Please greet me and say hi so we can start the conversation."})
+            timestamps.append(time.time())
+        else:
+            # If more than an hour has passed, start a new conversation
+            messages.clear()
+            messages.append([{"role": "system", "content": admin_prompt}])
+            timestamps.clear()
+            timestamps.append([time.time()])
+            messages.append({"role": "user", "content": "Please greet me and say hi so we can start the conversation."})
+            timestamps.append(time.time())
+    else:
+        messages.append({"role": "user", "content": "Please greet me and say hi so we can start the conversation."})
+        timestamps.append(time.time())
+
+    response = send_message(messages)
+    messages.append({"role": "assistant", "content": response})
+    
+    # Saving everything except the system prompt
+    save_conversation(messages[1:], timestamps[1:])
+    return response
 
 if __name__ == "__main__":
     # Start the conversation with a greeting from Tim.
