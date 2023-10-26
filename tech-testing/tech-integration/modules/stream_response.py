@@ -2,6 +2,7 @@
 import os
 import openai
 from dotenv import load_dotenv
+import time
 
 """Setup"""
 # Fetch the openai api key
@@ -30,6 +31,7 @@ Tim: Anyways, how's your day going? Have you been caught in the rain lately?
 
 """Helper Functions"""
 def process_msg(messages):
+    start_time = time.time()
     response = openai.ChatCompletion.create(
         model=MODEL,
         messages=messages,
@@ -37,32 +39,30 @@ def process_msg(messages):
         max_tokens=MAX_TOKENS,
         stream=True
     )
-    for chunk in response:
-        print(chunk)
 
-    # create variables to collect the stream of chunks
-    collected_chunks = []
-    collected_messages = []
+    # create variables to collect the stream of events
+    collected_events = []
+    completion_text = ''
 
-    for chunk in response:
-        # chunk_time = time.time() - start_time  # calculate the time delay of the chunk
-        collected_chunks.append(chunk)  # save the event response
-        chunk_message = chunk['choices'][0]['delta']  # extract the message
-        collected_messages.append(chunk_message)  # save the message
-        # print(f"Message received {chunk_time:.2f} seconds after request: {chunk_message}")  # print the delay and text
-    
+    # iterate through the stream of events
+    for event in response:
+        collected_events.append(event)  # save the event response
+        if (event['choices'][0]['finish_reason'] is not None):
+            break
+        event_text = event['choices'][0]['delta']['content']  # extract the text
+        completion_text += event_text  # append the text
+        if (event_text == '.' or event_text == '?' or event_text == '!'):
+             yield completion_text
+             completion_text = ''
+             print(f'Message chunk received after: ({time.time() - start_time:.2f}) seconds')
 
-    # Return the chat response from the API response.
-    return completion.choices[0].message["content"]
+def msg_consumer(message_chunks):
+    for message_chunk in message_chunks:
+        print(f'ChatGPT: {message_chunk.strip()}')
+        messages.append({"role": "assistant", "content": message_chunk})
 
 # Create the admin prompt for the model to adhere to.
 messages = [{"role": "system", "content": admin_prompt}]
-
-def chat(content: str) -> str:
-    messages.append({"role": "user", "content": content})
-    chat_response = process_msg(messages)
-    messages.append({"role": "assistant", "content": chat_response})
-    return chat_response
 
 if __name__ == "__main__":
     # Start an infinite loop to continue the conversation with the user.
@@ -73,9 +73,4 @@ if __name__ == "__main__":
 
         # Use the OpenAI GPT-3.5 model to generate a response to the user's input.
         chat_response = process_msg(messages)
-
-        # Print the response.
-        print(f'ChatGPT: {chat_response}') 
-
-        # Append the response to the messages with the role "assistant" to store the chat history.
-        messages.append({"role": "assistant", "content": chat_response})
+        msg_consumer(chat_response)
