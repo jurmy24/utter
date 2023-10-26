@@ -88,7 +88,6 @@ struct LoginView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
             .padding()
-            
             .frame(maxWidth: screenWidth)
         }
     }

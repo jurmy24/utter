@@ -13,6 +13,10 @@
 		E82FF75A2ADAC98700BE59C8 /* SpeakerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FF7592ADAC98700BE59C8 /* SpeakerView.swift */; };
 		E83EE6772AE9490500EF5D06 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EE6762AE9490500EF5D06 /* AudioManager.swift */; };
 		E83EE6792AEA5ECA00EF5D06 /* SlidingBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EE6782AEA5ECA00EF5D06 /* SlidingBackgroundView.swift */; };
+		E83EE67B2AEA876100EF5D06 /* LanguagePartnerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EE67A2AEA876100EF5D06 /* LanguagePartnerRow.swift */; };
+		E83EE6832AEA91ED00EF5D06 /* PartnerImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EE6822AEA91ED00EF5D06 /* PartnerImage.swift */; };
+		E83EE6892AEA9B4C00EF5D06 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EE6882AEA9B4C00EF5D06 /* MessageView.swift */; };
+		E83EE68B2AEA9B8500EF5D06 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83EE68A2AEA9B8500EF5D06 /* ChatView.swift */; };
 		E85B8E272AD5D57B00F8BF5A /* UtterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85B8E262AD5D57B00F8BF5A /* UtterApp.swift */; };
 		E85B8E292AD5D57B00F8BF5A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85B8E282AD5D57B00F8BF5A /* ContentView.swift */; };
 		E85B8E2B2AD5D57D00F8BF5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E85B8E2A2AD5D57D00F8BF5A /* Assets.xcassets */; };
@@ -56,6 +60,10 @@
 		E82FF7592ADAC98700BE59C8 /* SpeakerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerView.swift; sourceTree = "<group>"; };
 		E83EE6762AE9490500EF5D06 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		E83EE6782AEA5ECA00EF5D06 /* SlidingBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingBackgroundView.swift; sourceTree = "<group>"; };
+		E83EE67A2AEA876100EF5D06 /* LanguagePartnerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePartnerRow.swift; sourceTree = "<group>"; };
+		E83EE6822AEA91ED00EF5D06 /* PartnerImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerImage.swift; sourceTree = "<group>"; };
+		E83EE6882AEA9B4C00EF5D06 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		E83EE68A2AEA9B8500EF5D06 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		E85B8E232AD5D57B00F8BF5A /* Utter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Utter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E85B8E262AD5D57B00F8BF5A /* UtterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtterApp.swift; sourceTree = "<group>"; };
 		E85B8E282AD5D57B00F8BF5A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -103,6 +111,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E83EE67D2AEA87E900EF5D06 /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				E85B8E522AD5E5FB00F8BF5A /* LoginView.swift */,
+				E82FF7572ADAC16500BE59C8 /* OnboardingView.swift */,
+			);
+			path = Intro;
+			sourceTree = "<group>";
+		};
+		E83EE67E2AEA881A00EF5D06 /* Partners */ = {
+			isa = PBXGroup;
+			children = (
+				E83EE67A2AEA876100EF5D06 /* LanguagePartnerRow.swift */,
+				E85B8E552AD5EA7700F8BF5A /* TandemListView.swift */,
+			);
+			path = Partners;
+			sourceTree = "<group>";
+		};
+		E83EE67F2AEA884B00EF5D06 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				E83EE6782AEA5ECA00EF5D06 /* SlidingBackgroundView.swift */,
+				E83EE6822AEA91ED00EF5D06 /* PartnerImage.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		E83EE6802AEA886400EF5D06 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				E83EE6882AEA9B4C00EF5D06 /* MessageView.swift */,
+				E83EE68A2AEA9B8500EF5D06 /* ChatView.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		E83EE6812AEA886E00EF5D06 /* Call */ = {
+			isa = PBXGroup;
+			children = (
+				E82FF7592ADAC98700BE59C8 /* SpeakerView.swift */,
+			);
+			path = Call;
+			sourceTree = "<group>";
+		};
 		E85B8E1A2AD5D57B00F8BF5A = {
 			isa = PBXGroup;
 			children = (
@@ -162,11 +214,11 @@
 			isa = PBXGroup;
 			children = (
 				E85B8E282AD5D57B00F8BF5A /* ContentView.swift */,
-				E85B8E522AD5E5FB00F8BF5A /* LoginView.swift */,
-				E85B8E552AD5EA7700F8BF5A /* TandemListView.swift */,
-				E82FF7572ADAC16500BE59C8 /* OnboardingView.swift */,
-				E82FF7592ADAC98700BE59C8 /* SpeakerView.swift */,
-				E83EE6782AEA5ECA00EF5D06 /* SlidingBackgroundView.swift */,
+				E83EE67F2AEA884B00EF5D06 /* Components */,
+				E83EE67D2AEA87E900EF5D06 /* Intro */,
+				E83EE67E2AEA881A00EF5D06 /* Partners */,
+				E83EE6812AEA886E00EF5D06 /* Call */,
+				E83EE6802AEA886400EF5D06 /* Chat */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -347,11 +399,15 @@
 				E85B8E532AD5E5FB00F8BF5A /* LoginView.swift in Sources */,
 				E83EE6792AEA5ECA00EF5D06 /* SlidingBackgroundView.swift in Sources */,
 				E85B8E292AD5D57B00F8BF5A /* ContentView.swift in Sources */,
+				E83EE68B2AEA9B8500EF5D06 /* ChatView.swift in Sources */,
 				E82A7E632ADEB1DC00F1DF2B /* AudioBox.swift in Sources */,
 				E8D0A1A72AE199230045C1E6 /* ChatGPTCaller.swift in Sources */,
+				E83EE67B2AEA876100EF5D06 /* LanguagePartnerRow.swift in Sources */,
 				E82FF75A2ADAC98700BE59C8 /* SpeakerView.swift in Sources */,
 				E85B8E272AD5D57B00F8BF5A /* UtterApp.swift in Sources */,
+				E83EE6892AEA9B4C00EF5D06 /* MessageView.swift in Sources */,
 				E82A7E652ADEBE4500F1DF2B /* AudioStatus.swift in Sources */,
+				E83EE6832AEA91ED00EF5D06 /* PartnerImage.swift in Sources */,
 				E82FF7582ADAC16500BE59C8 /* OnboardingView.swift in Sources */,
 				E83EE6772AE9490500EF5D06 /* AudioManager.swift in Sources */,
 				E85B8E562AD5EA7700F8BF5A /* TandemListView.swift in Sources */,
