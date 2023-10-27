@@ -19,10 +19,10 @@ struct TandemListView: View {
                 
                 VStack{
                     VStack {
-                        Spacer()
+                        Spacer() //TODO: probably the wrong way to do it
                         
                         VStack{
-                            NavigationLink(destination: ChatOrCallDirect()) {
+                            NavigationLink(destination: ChatView()) {
                                 LanguagePartnerRow()
                                     .padding(.horizontal, 15)
                             }
@@ -37,8 +37,9 @@ struct TandemListView: View {
                                 topTrailing: 30.0)))
                             .ignoresSafeArea()
                     }
-                    .navigationTitle("Language partners")
+                    .navigationTitle("Language Partners")
                     .navigationBarTitleDisplayMode(.inline)
+
                     .navigationBarItems(trailing:
                                             Button(action: {
                         // Action for the "+" button

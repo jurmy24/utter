@@ -29,23 +29,27 @@ struct SpeakerView: View {
             
             VStack(spacing: 20) {
                 
-                PartnerImage()
+                PartnerImage(size: 150.0).padding()
                 Text("Tim").font(.headline)
                 
                 Spacer()
                 
-                ZStack {
-                    // The Circle view acts as the background of the button.
-                    Circle()
-                        .fill(Color(accentColor2)) // Changes color based on recording status.
-                        .frame(width: 100, height: 100) // Specifies the size of the circle.
-                    
-                    Text("End talk")
-                        .scaledToFill()
-                        .frame(width: 114, height: 114)
-                        .foregroundColor(Color.white)
-                        .fontWeight(.bold)
-                }
+                Button(action: {
+                    isInCall = false
+                }) {
+                    ZStack {
+                        // The Circle view acts as the background of the button.
+                        Circle()
+                            .fill(Color(accentColor2)) // Changes color based on recording status.
+                            .frame(width: 100, height: 100) // Specifies the size of the circle.
+                        
+                        Text("End talk")
+                            .scaledToFill()
+                            .frame(width: 114, height: 114)
+                            .foregroundColor(Color.white)
+                            .fontWeight(.bold)
+                    }
+                }.padding()
                 
                 ZStack {
                     // The Circle view acts as the background of the button.
@@ -71,14 +75,16 @@ struct SpeakerView: View {
                             
                         })
                 )
+                Text("Push and hold to talk").foregroundStyle(.white).fontWeight(.bold)
             }
             .padding()
             .onAppear{
+                isInCall = true
                 self.chatGPTCaller.setup()
             }.onDisappear{
                 isInCall = false
             }
-        }
+        }.navigationBarBackButtonHidden()
         
     }
     

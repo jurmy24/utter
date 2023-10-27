@@ -12,24 +12,27 @@ struct MessageView: View {
     let message: String
     
     var body: some View {
+        let accentColor = #colorLiteral(red: 0.3529040813, green: 0.3529704213, blue: 1, alpha: 1)
         HStack {
             if isUser {
                 Spacer()
                 Text(message)
                     .padding(10)
-                    .background(Color.blue)
+                    .background(Color(accentColor))
                     .foregroundColor(.white)
                     .clipShape(ChatBubble(isUser: isUser))
             } else {
                 Text(message)
                     .padding(10)
-                    .background(Color.gray.opacity(0.2))
+                    .background(Color.white)
                     .clipShape(ChatBubble(isUser: isUser))
                 Spacer()
             }
         }.padding(.horizontal)
     }
 }
+
+
 
 struct ChatBubble: Shape {
     let isUser: Bool
@@ -41,5 +44,5 @@ struct ChatBubble: Shape {
 }
 
 #Preview {
-    MessageView(isUser: false, message: "Hello world")
+    MessageView(isUser: true, message: "Hello world")
 }
