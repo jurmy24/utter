@@ -15,21 +15,8 @@ class AudioBox: NSObject, ObservableObject {
     var synthesizer: AVSpeechSynthesizer?
     var utterance: AVSpeechUtterance?
     var synthVoice: AVSpeechSynthesisVoice?
-    
-//    func setupUtterance() -> Void {
-//        // Create a speech synthesizer.
-//        
-//        
-////        self.synthesizer?.usesApplicationAudioSession = false
-//        
-////        let voices = AVSpeechSynthesisVoice.speechVoices()
-////        for voice in voices {
-////            if voice.name == "Daniel" {    // select e.g. Daniel voice
-////                self.synthVoice = voice
-////            }
-////        }
-//    }
-    
+    var player: AVAudioPlayer?
+        
     func generateUtterance(speechText: String) -> Void{
         
         self.synthesizer = AVSpeechSynthesizer()
@@ -46,9 +33,6 @@ class AudioBox: NSObject, ObservableObject {
         // Choose a voice using a language code
         self.utterance?.voice = AVSpeechSynthesisVoice(language: "en-US")
         
-        // Choose a voice using an identifier
-//        self.utterance?.voice = self.synthVoice
-        
         // Configure the utterance.
         self.utterance?.rate = AVSpeechUtteranceDefaultSpeechRate
         self.utterance?.pitchMultiplier = 1
@@ -59,7 +43,22 @@ class AudioBox: NSObject, ObservableObject {
         DispatchQueue.main.async {
             self.synthesizer?.speak(self.utterance!)
         }
+    }
+    
+    func playRecordingEndedSound() {
         
+        // Here I set up the audioSession for playing!
+        AudioManager.sharedAudio.setupForPlaying()
+        
+        guard let url = Bundle.main.url(forResource: "water-drop-sound", withExtension: ".mp3") else {
+            return
+        }
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            player?.play()
+        }catch let error{
+            print("Error playing sound. \(error.localizedDescription)")
+        }
     }
     
 }

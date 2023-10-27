@@ -22,6 +22,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     // It receives the application instance and launch options as parameters.
     @AppStorage("isOnboarding") var isOnboarding = true
     @AppStorage("isLoggedIn") var isLoggedIn = false
+    @AppStorage("isInCall") var isInCall = false
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:
@@ -30,6 +31,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         // For now we set these to default values to see what it looks like
         isOnboarding = true
         isLoggedIn = false
+        isInCall = false
         
         AudioManager.sharedAudio.setupAudioSession()
         
@@ -49,8 +51,6 @@ struct UtterApp: App {
         // Creating a window group to host the app's content.
         
         WindowGroup {
-            
-            
             
             // The ContentView is the initial view loaded within the window.
             ContentView()

@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct PartnerImage: View {
+//    var size: Int?
+    
     var body: some View {
+        
         Image("Tim")
             .resizable()
             .scaledToFill()

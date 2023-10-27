@@ -17,55 +17,69 @@ struct SpeakerView: View {
     @State var userTranscript = ""
     @State var botResponse = ""
     @State var models = [String]() // to eventually store the chat log
+    @AppStorage("isInCall") var isInCall = false
     
     var body: some View {
         
-        VStack(spacing: 20) {
-            HStack {
-                Image(systemName: "person.fill")
-                    .resizable()
-                    .frame(width: 50, height: 50)
-                    .padding()
-                VStack(alignment: .leading) {
-                    Text("Tim")
-                        .font(.headline)
+        let accentColor = #colorLiteral(red: 0.3529040813, green: 0.3529704213, blue: 1, alpha: 1)
+        let accentColor2 = #colorLiteral(red: 0.9183288813, green: 0.580676496, blue: 0.4868528843, alpha: 1)
+        
+        ZStack{
+            SlidingBackgroundView()
+            
+            VStack(spacing: 20) {
+                
+                PartnerImage()
+                Text("Tim").font(.headline)
+                
+                Spacer()
+                
+                ZStack {
+                    // The Circle view acts as the background of the button.
+                    Circle()
+                        .fill(Color(accentColor2)) // Changes color based on recording status.
+                        .frame(width: 100, height: 100) // Specifies the size of the circle.
+                    
+                    Text("End talk")
+                        .scaledToFill()
+                        .frame(width: 114, height: 114)
+                        .foregroundColor(Color.white)
+                        .fontWeight(.bold)
                 }
-            }
-            ZStack {
-                // The Circle view acts as the background of the button.
-                Circle()
-                    .fill(isRecording ? Color.red : Color.green) // Changes color based on recording status.
-                    .frame(width: 100, height: 100) // Specifies the size of the circle.
                 
-                // The Text view displays the button's label.
-                Text(isRecording ? "Recording" : "Push to Talk")
-                    .foregroundColor(.white) // Makes the text color white for better contrast.
-                
-            }.gesture(DragGesture(minimumDistance: 0) // Gesture to detect touch down and up
-                .onChanged({ _ in
-                    if !self.isRecording {
-                        self.startRecording()
-                    }
-                })
-                    .onEnded({ _ in
-                        self.endRecording()
-                        self.sendMessage()
+                ZStack {
+                    // The Circle view acts as the background of the button.
+                    Circle()
+                        .fill(isRecording ? Color(accentColor) : Color.white) // Changes color based on recording status.
+                        .frame(width: 150, height: 150) // Specifies the size of the circle.
+                    
+                    Image(isRecording ? "SpeakingIcon-White" : "SpeakingIcon-Blue")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 114, height: 114)
+                    
+                }.gesture(DragGesture(minimumDistance: 0) // Gesture to detect touch down and up
+                    .onChanged({ _ in
+                        if !self.isRecording {
+                            self.startRecording()
+                        }
                     })
-            )
-            
-            Text(self.botResponse).foregroundColor(.black)
+                        .onEnded({ _ in
+                            self.endRecording()
+                            audioBox.playRecordingEndedSound()
+                            self.sendMessage()
+                            
+                        })
+                )
+            }
+            .padding()
+            .onAppear{
+                self.chatGPTCaller.setup()
+            }.onDisappear{
+                isInCall = false
+            }
         }
-        .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 10)
-                .fill(Color(.systemBackground))
-                .shadow(radius: 10)
-            
-        )
-        .padding()
-        .onAppear{
-            self.chatGPTCaller.setup()
-        }.onDisappear{}
+        
     }
     
     private func startRecording(){
@@ -77,7 +91,7 @@ struct SpeakerView: View {
     private func endRecording(){
         self.speechRecognizer.stopTranscribing()
         self.userTranscript = speechRecognizer.transcript
-//        self.userTranscript = "Hello, you are a boss."
+        //        self.userTranscript = "Hello, you are a boss."
         self.isRecording = false
     }
     
@@ -105,4 +119,5 @@ struct SpeakerView_Previews: PreviewProvider {
         SpeakerView()
     }
 }
+
 

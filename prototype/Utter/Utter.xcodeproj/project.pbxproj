@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E8109C4B2AEB9E3800751CB2 /* ChatOrCallDirect.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8109C4A2AEB9E3800751CB2 /* ChatOrCallDirect.swift */; };
+		E8109C4E2AEBA93700751CB2 /* water-drop-sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E8109C4D2AEBA93700751CB2 /* water-drop-sound.mp3 */; };
 		E82A7E632ADEB1DC00F1DF2B /* AudioBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82A7E622ADEB1DC00F1DF2B /* AudioBox.swift */; };
 		E82A7E652ADEBE4500F1DF2B /* AudioStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82A7E642ADEBE4500F1DF2B /* AudioStatus.swift */; };
 		E82FF7582ADAC16500BE59C8 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82FF7572ADAC16500BE59C8 /* OnboardingView.swift */; };
@@ -54,6 +56,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E8109C4A2AEB9E3800751CB2 /* ChatOrCallDirect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatOrCallDirect.swift; sourceTree = "<group>"; };
+		E8109C4D2AEBA93700751CB2 /* water-drop-sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "water-drop-sound.mp3"; sourceTree = "<group>"; };
 		E82A7E622ADEB1DC00F1DF2B /* AudioBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBox.swift; sourceTree = "<group>"; };
 		E82A7E642ADEBE4500F1DF2B /* AudioStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioStatus.swift; sourceTree = "<group>"; };
 		E82FF7572ADAC16500BE59C8 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -111,6 +115,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E8109C4C2AEBA91800751CB2 /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				E8109C4D2AEBA93700751CB2 /* water-drop-sound.mp3 */,
+			);
+			path = sounds;
+			sourceTree = "<group>";
+		};
 		E83EE67D2AEA87E900EF5D06 /* Intro */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				E85B8E282AD5D57B00F8BF5A /* ContentView.swift */,
+				E8109C4A2AEB9E3800751CB2 /* ChatOrCallDirect.swift */,
 				E83EE67F2AEA884B00EF5D06 /* Components */,
 				E83EE67D2AEA87E900EF5D06 /* Intro */,
 				E83EE67E2AEA881A00EF5D06 /* Partners */,
@@ -236,6 +249,7 @@
 		E8F38FFB2ADC1111008CC27C /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				E8109C4C2AEBA91800751CB2 /* sounds */,
 				E85B8E2A2AD5D57D00F8BF5A /* Assets.xcassets */,
 			);
 			path = resources;
@@ -371,6 +385,7 @@
 			files = (
 				E85B8E2E2AD5D57D00F8BF5A /* Preview Assets.xcassets in Resources */,
 				E85B8E2B2AD5D57D00F8BF5A /* Assets.xcassets in Resources */,
+				E8109C4E2AEBA93700751CB2 /* water-drop-sound.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +423,7 @@
 				E83EE6892AEA9B4C00EF5D06 /* MessageView.swift in Sources */,
 				E82A7E652ADEBE4500F1DF2B /* AudioStatus.swift in Sources */,
 				E83EE6832AEA91ED00EF5D06 /* PartnerImage.swift in Sources */,
+				E8109C4B2AEB9E3800751CB2 /* ChatOrCallDirect.swift in Sources */,
 				E82FF7582ADAC16500BE59C8 /* OnboardingView.swift in Sources */,
 				E83EE6772AE9490500EF5D06 /* AudioManager.swift in Sources */,
 				E85B8E562AD5EA7700F8BF5A /* TandemListView.swift in Sources */,

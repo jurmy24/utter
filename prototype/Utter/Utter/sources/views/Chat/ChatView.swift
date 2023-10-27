@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ChatView: View {
+    
+    @AppStorage("isInCall") var isInCall = false
+    
     // Sample Data
     let messages: [(isUser: Bool, message: String)] = [
         (false, "Yes! It was sooo cool to see. It was awesome."),
@@ -21,6 +24,7 @@ struct ChatView: View {
     ]
     
     var body: some View {
+        
         VStack {
             ScrollView {
                 ForEach(messages, id: \.message) { messageData in
@@ -29,8 +33,11 @@ struct ChatView: View {
             }
             HStack {
                 TextField("Type something...", text: .constant(""))
-                Button(action: {}, label: {
-                    Text("Send")
+                Button(action: {
+                    // Define an action here
+                    isInCall = true
+                }, label: {
+                    Text("Join Talk")
                 })
             }
             .padding()
