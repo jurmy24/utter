@@ -23,8 +23,8 @@ struct ChatView: View {
 
 struct Chat: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
-    
+    @State private var text = ""
+    @State private var chatMessages = ChatModel.chatModel.chatHistory
     
     var btnBack : some View { Button(action: {
         
@@ -43,28 +43,12 @@ struct Chat: View {
     let screenWidth = UIScreen.main.bounds.width
     @AppStorage("isInCall") var isInCall = false
     
-    // Sample Data
-    let messages: [(isUser: Bool, message: String)] = [
-        (false, "Yes! It was sooo cool to see. It was awesome."),
-        (true, "How are you feeling today, are you doing good?"),
-        (false, "I am doing great, I went jogging outside."),
-        (true, "Great, good job! What do you like about jogging the most?"),
-        (false, "I am doing great, I went jogging outside. ipsum et lorem ipsum et lorem ipsum ipsum et lorem ipsum et Lorem ipsum"),
-        (true, "Great, good job! What do you like about jogging the most?"),
-        (false, "I have to go. Let’s talk soon again okay?"),
-        (true, "Bye, see you soon!"),
-        (false, "I am doing great, I went jogging outside."),
-        (true, "Great, good job! What do you like about jogging the most?"),
-        (false, "I am doing great, I went jogging outside. ipsum et lorem ipsum et lorem ipsum ipsum et lorem ipsum et Lorem ipsum"),
-        (true, "Great, good job! What do you like about jogging the most?"),
-        (false, "I have to go. Let’s talk soon again okay?"),
-        (true, "Bye, see you soon!")
-    ]
-    
     var body: some View {
+        
+        // Sample Data
+//        let messages: [Message] = ChatModel.chatModel.chatHistory
+        
         VStack (spacing: 0){
-            
-            
             
             let accentColor = #colorLiteral(red: 0.3529040813, green: 0.3529704213, blue: 1, alpha: 1)
             Rectangle()
@@ -81,23 +65,37 @@ struct Chat: View {
                 
                 VStack {
                     ScrollView {
-                        ForEach(messages, id: \.message) { messageData in
-                            MessageView(isUser: messageData.isUser, message: messageData.message)
+                        VStack(spacing: 10) {
+                            ForEach(chatMessages, id: \.timestamp) { messageData in
+                                MessageView(sender: messageData.sender, message: messageData.content)
+                            }
                         }
+                        .padding()
                     }
                     Divider()
                     HStack {
-                        TextField("Type Something...", text: .constant(""))
-                            .padding(.leading, 10)
-                            .frame(height: 60)
-                            .background(
-                                Rectangle()
-                                    .stroke(Color.white, lineWidth: 1)
-                                    .background(Color.white)
-                                    .cornerRadius(20)
-                            )
-                            .autocapitalization(.none)
-                            .disableAutocorrection(true)
+                        TextField("Type Something...", text: $text)
+                        .padding(.leading, 10)
+                        .frame(height: 60)
+                        .background(
+                            Rectangle()
+                                .stroke(Color.white, lineWidth: 1)
+                                .background(Color.white)
+                                .cornerRadius(20)
+                        )
+                        .autocapitalization(.none)
+                        .disableAutocorrection(true)
+                        .onSubmit{
+                            // Action to perform when finished typing
+                            ChatModel.chatModel.send(text: text){response in
+                                DispatchQueue.main.async{
+                                    print("Tim responded textually.")
+                                    chatMessages = ChatModel.chatModel.chatHistory // update chatmessages
+                                }
+                            }
+                            text = ""
+                            chatMessages = ChatModel.chatModel.chatHistory // update chatmessages
+                        }
                         
                         NavigationLink(destination: SpeakerView()) {
                             Button(action: {
@@ -119,7 +117,6 @@ struct Chat: View {
                         }
                     }
                     .frame(height: 100, alignment: .center)
-//                    .edgesIgnoringSafeArea(.all)
                     .padding(.top, 5)
                 }
                 .padding()
@@ -133,10 +130,6 @@ struct Chat: View {
                 
             }.padding(.top, -80).edgesIgnoringSafeArea(.all)
         }
-        
-        
-        
-        
     }
 }
 

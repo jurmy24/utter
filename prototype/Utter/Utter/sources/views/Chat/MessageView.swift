@@ -8,24 +8,24 @@
 import SwiftUI
 
 struct MessageView: View {
-    let isUser: Bool
+    let sender: Sender
     let message: String
     
     var body: some View {
         let accentColor = #colorLiteral(red: 0.3529040813, green: 0.3529704213, blue: 1, alpha: 1)
         HStack {
-            if isUser {
+            if sender == .user{
                 Spacer()
                 Text(message)
                     .padding(10)
                     .background(Color(accentColor))
                     .foregroundColor(.white)
-                    .clipShape(ChatBubble(isUser: isUser))
-            } else {
+                    .clipShape(ChatBubble(isUser: true))
+            } else if sender == .assistant{
                 Text(message)
                     .padding(10)
                     .background(Color.white)
-                    .clipShape(ChatBubble(isUser: isUser))
+                    .clipShape(ChatBubble(isUser: false))
                 Spacer()
             }
         }.padding(.horizontal)
@@ -44,5 +44,5 @@ struct ChatBubble: Shape {
 }
 
 #Preview {
-    MessageView(isUser: true, message: "Hello world")
+    MessageView(sender: .user, message: "Hello world")
 }

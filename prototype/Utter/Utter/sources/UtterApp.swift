@@ -23,6 +23,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     @AppStorage("isOnboarding") var isOnboarding = true
     @AppStorage("isLoggedIn") var isLoggedIn = false
     @AppStorage("isInCall") var isInCall = false
+    static let chatModel = ChatModel()
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:
@@ -33,7 +34,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         isLoggedIn = false
         isInCall = false
         
+        
         AudioManager.sharedAudio.setupAudioSession()
+        ChatModel.chatModel.setup()
         
         // Returning true to indicate that the app has completed its launching processes successfully.
         return true

@@ -10,16 +10,20 @@ import AVFoundation
 
 struct SpeakerView: View {
     @ObservedObject var speechRecognizer = SpeechRecognizer()
-    @ObservedObject var chatGPTCaller = ChatGPTCaller()
     @ObservedObject var audioBox = AudioBox()
     
     @State private var isRecording = false
     @State var userTranscript = ""
     @State var botResponse = ""
     @State var models = [String]() // to eventually store the chat log
+    @State private var isLoading = false
     @AppStorage("isInCall") var isInCall = false
+    let screenWidth = UIScreen.main.bounds.width
+    let screenHeight = UIScreen.main.bounds.height
+    let sizeConversion = UIScreen.main.bounds.height / 852.0 // this is the size of the iphone 15 pro screen that I build the app on
     
     var body: some View {
+        
         
         let accentColor = #colorLiteral(red: 0.3529040813, green: 0.3529704213, blue: 1, alpha: 1)
         let accentColor2 = #colorLiteral(red: 0.9183288813, green: 0.580676496, blue: 0.4868528843, alpha: 1)
@@ -27,40 +31,45 @@ struct SpeakerView: View {
         ZStack{
             SlidingBackgroundView()
             
-            VStack(spacing: 20) {
+            VStack(spacing: 15) {
                 
-                PartnerImage(size: 150.0).padding()
-                Text("Tim").font(.headline)
+                PartnerImage(size: 120.0*sizeConversion).padding()
+//                Text("Tim").font(.headline)
                 
-                Spacer()
+                if isLoading {
+                    Spacer()
+                    LoadingBalls()
+                    Spacer()
+                } else {
+                    Spacer()
+                }
                 
                 Button(action: {
                     isInCall = false
                 }) {
                     ZStack {
-                        // The Circle view acts as the background of the button.
                         Circle()
-                            .fill(Color(accentColor2)) // Changes color based on recording status.
-                            .frame(width: 100, height: 100) // Specifies the size of the circle.
+                            .fill(Color(accentColor2))
+                            .frame(width: 90*sizeConversion, height: 90*sizeConversion)
                         
                         Text("End talk")
                             .scaledToFill()
-                            .frame(width: 114, height: 114)
+                            .frame(width: 110*sizeConversion, height: 110*sizeConversion)
                             .foregroundColor(Color.white)
                             .fontWeight(.bold)
                     }
-                }.padding()
+                }
                 
                 ZStack {
                     // The Circle view acts as the background of the button.
                     Circle()
                         .fill(isRecording ? Color(accentColor) : Color.white) // Changes color based on recording status.
-                        .frame(width: 150, height: 150) // Specifies the size of the circle.
+                        .frame(width: 120*sizeConversion, height: 120*sizeConversion) // Specifies the size of the circle.
                     
                     Image(isRecording ? "SpeakingIcon-White" : "SpeakingIcon-Blue")
                         .resizable()
                         .scaledToFill()
-                        .frame(width: 114, height: 114)
+                        .frame(width: 100*sizeConversion, height: 100*sizeConversion)
                     
                 }.gesture(DragGesture(minimumDistance: 0) // Gesture to detect touch down and up
                     .onChanged({ _ in
@@ -72,19 +81,22 @@ struct SpeakerView: View {
                             self.endRecording()
                             audioBox.playRecordingEndedSound()
                             self.sendMessage()
-                            
                         })
                 )
                 Text("Push and hold to talk").foregroundStyle(.white).fontWeight(.bold)
             }
-            .padding()
+            .padding(.bottom, 60)
+            .padding(.top, 20)
+            .frame(width:screenWidth, alignment: .center)
             .onAppear{
                 isInCall = true
-                self.chatGPTCaller.setup()
+                self.getIntroMessage()
             }.onDisappear{
                 isInCall = false
             }
         }.navigationBarBackButtonHidden()
+//            .navigationBarTitleDisplayMode(.hidden)
+            .frame(width:screenWidth, height: screenHeight)
         
     }
     
@@ -102,15 +114,32 @@ struct SpeakerView: View {
     }
     
     private func sendMessage(){
+        isLoading = true
         guard !self.userTranscript.trimmingCharacters(in: .whitespaces).isEmpty else{
             return
         }
         print("User: \(self.userTranscript)")
-        self.chatGPTCaller.send(text: self.userTranscript){response in
+        ChatModel.chatModel.send(text: self.userTranscript){response in
             DispatchQueue.main.async{
                 self.botResponse = response
                 print("Tim: \(self.botResponse)")
+                self.isLoading = false
                 self.speakResponse()
+                
+            }
+        }
+    }
+    
+    private func getIntroMessage(){
+        isLoading = true
+        
+        ChatModel.chatModel.send(text: "Hello. Greet me and suggest some topics to discuss or ask me if theres something I want to discuss.", save: false){response in
+            DispatchQueue.main.async{
+                self.botResponse = response
+                print("Tim: \(self.botResponse)")
+                self.isLoading = false
+                self.speakResponse()
+                
             }
         }
     }
