@@ -116,6 +116,7 @@ struct SpeakerView: View {
     private func sendMessage(){
         isLoading = true
         guard !self.userTranscript.trimmingCharacters(in: .whitespaces).isEmpty else{
+            isLoading = false
             return
         }
         print("User: \(self.userTranscript)")
@@ -133,7 +134,7 @@ struct SpeakerView: View {
     private func getIntroMessage(){
         isLoading = true
         
-        ChatModel.chatModel.send(text: "Hello. Greet me and suggest some topics to discuss or ask me if theres something I want to discuss.", save: false){response in
+        ChatModel.chatModel.send(text: "Hello.", save: false){response in
             DispatchQueue.main.async{
                 self.botResponse = response
                 print("Tim: \(self.botResponse)")

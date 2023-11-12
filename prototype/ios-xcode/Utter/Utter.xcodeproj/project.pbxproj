@@ -28,11 +28,6 @@
 		E85B8E442AD5D57D00F8BF5A /* UtterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85B8E432AD5D57D00F8BF5A /* UtterUITestsLaunchTests.swift */; };
 		E85B8E532AD5E5FB00F8BF5A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85B8E522AD5E5FB00F8BF5A /* LoginView.swift */; };
 		E85B8E562AD5EA7700F8BF5A /* TandemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85B8E552AD5EA7700F8BF5A /* TandemListView.swift */; };
-		E877DE5D2AE7D2C700EFA0ED /* AWSAPIGateway in Frameworks */ = {isa = PBXBuildFile; productRef = E877DE5C2AE7D2C700EFA0ED /* AWSAPIGateway */; };
-		E877DE5F2AE7D2C700EFA0ED /* AWSAppleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = E877DE5E2AE7D2C700EFA0ED /* AWSAppleSignIn */; };
-		E877DE612AE7D2C700EFA0ED /* AWSAuthCore in Frameworks */ = {isa = PBXBuildFile; productRef = E877DE602AE7D2C700EFA0ED /* AWSAuthCore */; };
-		E877DE632AE7D2C700EFA0ED /* AWSAuthUI in Frameworks */ = {isa = PBXBuildFile; productRef = E877DE622AE7D2C700EFA0ED /* AWSAuthUI */; };
-		E877DE652AE7D2C700EFA0ED /* AWSAutoScaling in Frameworks */ = {isa = PBXBuildFile; productRef = E877DE642AE7D2C700EFA0ED /* AWSAutoScaling */; };
 		E8BF001C2AEC21080022E6B5 /* LoadingBalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BF001B2AEC21080022E6B5 /* LoadingBalls.swift */; };
 		E8BF001F2AED18F00022E6B5 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E8BF001D2AED18F00022E6B5 /* CoreDataModel.xcdatamodeld */; };
 		E8BF00212AED1E390022E6B5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BF00202AED1E390022E6B5 /* Message.swift */; };
@@ -97,12 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E877DE5D2AE7D2C700EFA0ED /* AWSAPIGateway in Frameworks */,
-				E877DE612AE7D2C700EFA0ED /* AWSAuthCore in Frameworks */,
-				E877DE5F2AE7D2C700EFA0ED /* AWSAppleSignIn in Frameworks */,
-				E877DE652AE7D2C700EFA0ED /* AWSAutoScaling in Frameworks */,
 				E8D0A1A52AE192930045C1E6 /* OpenAISwift in Frameworks */,
-				E877DE632AE7D2C700EFA0ED /* AWSAuthUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,11 +303,6 @@
 			name = Utter;
 			packageProductDependencies = (
 				E8D0A1A42AE192930045C1E6 /* OpenAISwift */,
-				E877DE5C2AE7D2C700EFA0ED /* AWSAPIGateway */,
-				E877DE5E2AE7D2C700EFA0ED /* AWSAppleSignIn */,
-				E877DE602AE7D2C700EFA0ED /* AWSAuthCore */,
-				E877DE622AE7D2C700EFA0ED /* AWSAuthUI */,
-				E877DE642AE7D2C700EFA0ED /* AWSAutoScaling */,
 			);
 			productName = Utter;
 			productReference = E85B8E232AD5D57B00F8BF5A /* Utter.app */;
@@ -393,7 +378,6 @@
 			mainGroup = E85B8E1A2AD5D57B00F8BF5A;
 			packageReferences = (
 				E8D0A1A32AE192930045C1E6 /* XCRemoteSwiftPackageReference "OpenAISwift" */,
-				E877DE5B2AE7D2C600EFA0ED /* XCRemoteSwiftPackageReference "aws-sdk-ios-spm" */,
 			);
 			productRefGroup = E85B8E242AD5D57B00F8BF5A /* Products */;
 			projectDirPath = "";
@@ -793,50 +777,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		E877DE5B2AE7D2C600EFA0ED /* XCRemoteSwiftPackageReference "aws-sdk-ios-spm" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/aws-amplify/aws-sdk-ios-spm";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.33.4;
-			};
-		};
 		E8D0A1A32AE192930045C1E6 /* XCRemoteSwiftPackageReference "OpenAISwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/adamrushy/OpenAISwift.git";
 			requirement = {
-				kind = exactVersion;
-				version = 1.4.0;
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.4;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E877DE5C2AE7D2C700EFA0ED /* AWSAPIGateway */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E877DE5B2AE7D2C600EFA0ED /* XCRemoteSwiftPackageReference "aws-sdk-ios-spm" */;
-			productName = AWSAPIGateway;
-		};
-		E877DE5E2AE7D2C700EFA0ED /* AWSAppleSignIn */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E877DE5B2AE7D2C600EFA0ED /* XCRemoteSwiftPackageReference "aws-sdk-ios-spm" */;
-			productName = AWSAppleSignIn;
-		};
-		E877DE602AE7D2C700EFA0ED /* AWSAuthCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E877DE5B2AE7D2C600EFA0ED /* XCRemoteSwiftPackageReference "aws-sdk-ios-spm" */;
-			productName = AWSAuthCore;
-		};
-		E877DE622AE7D2C700EFA0ED /* AWSAuthUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E877DE5B2AE7D2C600EFA0ED /* XCRemoteSwiftPackageReference "aws-sdk-ios-spm" */;
-			productName = AWSAuthUI;
-		};
-		E877DE642AE7D2C700EFA0ED /* AWSAutoScaling */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E877DE5B2AE7D2C600EFA0ED /* XCRemoteSwiftPackageReference "aws-sdk-ios-spm" */;
-			productName = AWSAutoScaling;
-		};
 		E8D0A1A42AE192930045C1E6 /* OpenAISwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E8D0A1A32AE192930045C1E6 /* XCRemoteSwiftPackageReference "OpenAISwift" */;

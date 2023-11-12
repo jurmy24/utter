@@ -24,7 +24,7 @@ final class ChatModel: ObservableObject {
     """
     
     func setup(){
-        let key = "sk-"
+        let key = "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"
         
         //I'm currently using a pre-release version so it says makeDefultOpenAI instead of makeDefaultOpenAI. Arrhhh!
         openAIClient = OpenAISwift(config: OpenAISwift.Config.makeDefultOpenAI(api_key: key))
@@ -50,7 +50,7 @@ final class ChatModel: ObservableObject {
         }
         
         let chatToSend = formatInput()
-        openAIClient?.sendChat(with: chatToSend, model: .chat(.chatgpt), temperature: 0.5, maxTokens: 50){response in // Result<OpenAI, OpenAIError>
+        openAIClient?.sendChat(with: chatToSend, model: .chat(.chatgpt), temperature: 0.5, maxTokens: 100){response in
             switch response {
             case .success(let success):
                 let output = success.choices?.first?.message.content ?? ""
