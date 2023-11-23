@@ -1,0 +1,5 @@
+Microsoft_Azure in English: 0.8757953643798828 seconds
+Microsoft_Azure in French: 3.738208055496216 seconds
+Microsoft_Azure in German: 3.888160228729248 seconds
+Microsoft_Azure in Spanish: 2.0439395904541016 seconds
+Microsoft_Azure in Swedish: 2.6585607528686523 seconds

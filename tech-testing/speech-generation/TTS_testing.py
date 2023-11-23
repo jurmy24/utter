@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import openai
 import boto3
 from TTS_testing_utils import *
+import time
 
 ####
 load_dotenv()
@@ -18,20 +19,36 @@ text_samples = {
 
 # TTS service configurations (API keys, endpoints, etc.)
 tts_services = {
-    "OpenAI_TTS": {"function": openai_tts, "params": {'api_key':os.getenv('OPENAI_API_KEY')}},
-    "Amazon_Polly": {"function": amazon_polly, "params": {'aws_access_key_id':os.getenv('AWS_ACC_KEY'), 'aws_secret_access_key':os.getenv('AWS_SEC_ACC_KEY')}},
-    "ElevenLabs": {"function": elevenlabs, "params": {'api_key':os.getenv('ELEVENLABS_API_KEY')}}
-   
+    # "OpenAI_TTS": {"function": openai_tts, "params": {'api_key':os.getenv('OPENAI_API_KEY')}},
+    # "Amazon_Polly": {"function": amazon_polly, "params": {'aws_access_key_id':os.getenv('AWS_ACC_KEY'), 'aws_secret_access_key':os.getenv('AWS_SEC_ACC_KEY')}},
+    # "ElevenLabs": {"function": elevenlabs, "params": {'api_key':os.getenv('ELEVENLABS_API_KEY')}},
+    # "PlayHT": {"function": play_ht, "params": {'api_key':os.getenv('PLAYHT_SEC_KEY'), 'user_id':os.getenv('PLAYHT_USER_ID')}},
+    "Microsoft_Azure": {"function": microsoft_azure, "params": {'api_key':os.getenv('AZURE_API_KEY'), 'region':os.getenv('AZURE_REGION')}}
 }
 
 
 
 # General function to test all services
 def test_tts_services(text_samples, tts_services):
+    results = []
     for language, text in text_samples.items():
         for service_name, service_info in tts_services.items():
+
+            start_time = time.time()
             audio_output = service_info["function"](text, service_info["params"], language)
-            save_audio(audio_output, f"{service_name}_{language}.mp3")
+            if audio_output:
+                save_audio(audio_output, f"{service_name}_{language}.mp3")
+            end_time = time.time()
+
+            duration = end_time - start_time
+            result = {
+                "service": service_name,
+                "language": language,
+                "duration": duration
+            }
+            results.append(result)
+
+    save_results(results)
 
 
 if __name__ == "__main__":
