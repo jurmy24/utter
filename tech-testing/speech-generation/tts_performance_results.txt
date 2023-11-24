@@ -1,5 +1,10 @@
-Microsoft_Azure in English: 0.8757953643798828 seconds
-Microsoft_Azure in French: 3.738208055496216 seconds
-Microsoft_Azure in German: 3.888160228729248 seconds
-Microsoft_Azure in Spanish: 2.0439395904541016 seconds
-Microsoft_Azure in Swedish: 2.6585607528686523 seconds
+Google_Neural in English: 0.27911925315856934 seconds
+Google_Polyglot in English: 0.22928571701049805 seconds
+Google_Neural in French: 0.29260778427124023 seconds
+Google_Polyglot in French: 0.22823429107666016 seconds
+Google_Neural in German: 0.250690221786499 seconds
+Google_Polyglot in German: 0.7295880317687988 seconds
+Google_Neural in Spanish: 0.6357567310333252 seconds
+Google_Polyglot in Spanish: 0.6743574142456055 seconds
+Google_Neural in Swedish: 0.5528535842895508 seconds
+Google_Polyglot in Swedish: 0.29850316047668457 seconds
