@@ -23,8 +23,13 @@ tts_services = {
     # "Amazon_Polly": {"function": amazon_polly, "params": {'aws_access_key_id':os.getenv('AWS_ACC_KEY'), 'aws_secret_access_key':os.getenv('AWS_SEC_ACC_KEY')}},
     # "ElevenLabs": {"function": elevenlabs, "params": {'api_key':os.getenv('ELEVENLABS_API_KEY')}},
     # "PlayHT": {"function": play_ht, "params": {'api_key':os.getenv('PLAYHT_SEC_KEY'), 'user_id':os.getenv('PLAYHT_USER_ID')}},
-    "Microsoft_Azure": {"function": microsoft_azure, "params": {'api_key':os.getenv('AZURE_API_KEY'), 'region':os.getenv('AZURE_REGION')}}
+    # "Microsoft_Azure": {"function": microsoft_azure, "params": {'api_key':os.getenv('AZURE_API_KEY'), 'region':os.getenv('AZURE_REGION')}},
+    # "Google_Wavenet": {"function": google_tts, "params": {'engine':'wavenet'}},
+    "Google_Neural": {"function": google_tts, "params": {'engine':'neural'}},
+    "Google_Polyglot": {"function": google_tts, "params": {'engine':'polyglot'}}
+
 }
+
 
 
 
