@@ -1,0 +1,10 @@
+Google_Neural in English: 0.27911925315856934 seconds
+Google_Polyglot in English: 0.22928571701049805 seconds
+Google_Neural in French: 0.29260778427124023 seconds
+Google_Polyglot in French: 0.22823429107666016 seconds
+Google_Neural in German: 0.250690221786499 seconds
+Google_Polyglot in German: 0.7295880317687988 seconds
+Google_Neural in Spanish: 0.6357567310333252 seconds
+Google_Polyglot in Spanish: 0.6743574142456055 seconds
+Google_Neural in Swedish: 0.5528535842895508 seconds
+Google_Polyglot in Swedish: 0.29850316047668457 seconds
