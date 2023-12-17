@@ -6,9 +6,6 @@ import json
 import sounddevice as sd
 import queue
 
-
-
-
 q = queue.Queue()
 model = Model(lang="en-us")
 
