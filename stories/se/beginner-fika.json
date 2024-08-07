@@ -30,9 +30,11 @@
               "cefr": ["A1", "A2"],
               "query": "Vad heter caféet där Anna väntar?",
               "answer_options": ["Kaffestugan", "Stockholm", "Café"],
+              "correct_answer": "Kaffestugan",
               "audio": null,
               "action": null,
-              "affected_text": null
+              "affected_text": null,
+              "hints": null
             },
             {
               "exercise_id": 2,
@@ -40,9 +42,11 @@
               "cefr": ["A1"],
               "query": "Är Karl i tid?",
               "answer_options": ["Ja", "Nej"],
+              "correct_answer": "Nej",
               "audio": null,
               "action": null,
-              "affected_text": null
+              "affected_text": null,
+              "hints": null
             },
             {
               "exercise_id": 3,
@@ -54,9 +58,11 @@
                 "att gå en promenad",
                 "att göra kaffe"
               ],
+              "correct_answer": "att äta lite mat och dryck med en annan",
               "audio": null,
               "action": null,
-              "affected_text": null
+              "affected_text": null,
+              "hints": null
             }
           ]
         },
@@ -87,18 +93,24 @@
               "type": "pronounce-rep",
               "cefr": ["A1", "A2"],
               "query": null,
+              "answer_options": null,
+              "correct_answer": null,
               "audio": null,
               "action": "emphasize-text",
-              "affected_text": "Förlåt! Min buss var sen."
+              "affected_text": "Förlåt! Min buss var sen.",
+              "hints": null
             },
             {
               "exercise_id": 6,
               "type": "pronounce-deaf",
               "cefr": ["A2"],
               "query": null,
+              "answer_options": null,
+              "correct_answer": null,
               "audio": null,
               "action": "hide-audio",
-              "affected_text": "Förlåt! Min buss var sen."
+              "affected_text": "Förlåt! Min buss var sen.",
+              "hints": null
             }
           ]
         },
@@ -141,13 +153,15 @@
               "type": "speak-replace",
               "cefr": ["A1", "A2"],
               "query": "Säg vad du vill äta",
-              "answer_options": [
-                "Jag vill äta en chokladboll/glass/sandwich",
-                "Jag tar gärna en chokladboll/glass/sandwich och en kopp kaffe/mjölk"
-              ],
+              "answer_options": null,
+              "correct_answer": null,
               "audio": null,
               "action": "hide-all",
-              "affected_text": "Vad vill du ha att äta?"
+              "affected_text": "Vad vill du ha att äta?",
+              "hints": [
+                "Jag vill äta en chokladboll/glass/sandwich",
+                "Jag tar gärna en chokladboll/glass/sandwich och en kopp kaffe/mjölk"
+              ]
             }
           ]
         },
@@ -184,27 +198,36 @@
               "type": "pronounce-rep",
               "cefr": ["A1"],
               "query": null,
+              "answer_options": null,
+              "correct_answer": null,
               "audio": null,
               "action": "emphasize-text",
-              "affected_text": "Du kom ju nästan inte genom dörren!"
+              "affected_text": "Du kom ju nästan inte genom dörren!",
+              "hints": null
             },
             {
               "exercise_id": 9,
               "type": "pronounce-rep",
               "cefr": ["A1", "A2"],
               "query": null,
+              "answer_options": null,
+              "correct_answer": null,
               "audio": null,
               "action": "emphasize-text",
-              "affected_text": "Jag undrar Karl, hur lång är du? Du kom ju nästan inte genom dörren!"
+              "affected_text": "Jag undrar Karl, hur lång är du? Du kom ju nästan inte genom dörren!",
+              "hints": null
             },
             {
               "exercise_id": 10,
               "type": "pronounce-deaf",
               "cefr": ["A2"],
               "query": null,
+              "answer_options": null,
+              "correct_answer": null,
               "audio": null,
               "action": "hide-audio",
-              "affected_text": "Jag undrar Karl, hur lång är du? Du kom ju nästan inte genom dörren!"
+              "affected_text": "Jag undrar Karl, hur lång är du? Du kom ju nästan inte genom dörren!",
+              "hints": null
             }
           ]
         },
@@ -229,11 +252,16 @@
               "type": "interact",
               "cefr": ["A1", "A2"],
               "skip_condition": null,
-              "query": "Vilka sporter tycker du att det är bra att vara lång?",
+              "query": "I vilka sporter tycker du att det är bra att vara lång?",
               "answer_options": null,
+              "correct_answer": null,
               "audio": null,
               "action": null,
-              "affected_text": "Borde vara ungefär 1 minut eller 3 interaktioner"
+              "affected_text": null,
+              "hints": [
+                "Jag tycker att basket är bra för långa personer.",
+                "Handboll"
+              ]
             }
           ]
         }
@@ -266,9 +294,11 @@
               "cefr": ["A1", "A2"],
               "query": "Vad handlar Anna och Karls samtal om?",
               "answer_options": ["Sport", "Fika", "Diskussion"],
+              "correct_answer": "Sport",
               "audio": null,
               "action": null,
-              "affected_text": null
+              "affected_text": null,
+              "hints": null
             },
             {
               "exercise_id": 13,
@@ -276,9 +306,11 @@
               "cefr": ["A1", "A2"],
               "query": "Vilken sport spelar Anna?",
               "answer_options": ["Basket", "Fotboll", "Handboll"],
+              "correct_answer": "Handboll",
               "audio": null,
               "action": null,
-              "affected_text": null
+              "affected_text": null,
+              "hints": null
             },
             {
               "exercise_id": 14,
@@ -286,9 +318,14 @@
               "cefr": ["A1", "A2"],
               "query": "Vilken sport tror du Anna gillar bäst?",
               "answer_options": null,
+              "correct_answer": null,
               "audio": null,
               "action": null,
-              "affected_text": null
+              "affected_text": null,
+              "hints": [
+                "Jag tror att Anna gillar handboll bäst.",
+                "Jag tror att Anna gillar basket bäst."
+              ]
             },
             {
               "exercise_id": 15,
@@ -296,9 +333,11 @@
               "cefr": ["A1"],
               "query": "Vad väntar Anna och Karl på?",
               "answer_options": ["Deras buss", "Deras fika", "Deras vänner"],
+              "correct_answer": "Deras fika",
               "audio": null,
               "action": null,
-              "affected_text": null
+              "affected_text": null,
+              "hints": null
             },
             {
               "exercise_id": 16,
@@ -306,9 +345,11 @@
               "cefr": ["A1", "A2"],
               "query": "Vad gillar du för sport?",
               "answer_options": null,
+              "correct_answer": null,
               "audio": null,
               "action": null,
-              "affected_text": "Svara med vad du tycker om att göra på fritiden."
+              "affected_text": null,
+              "hints": ["Svara med vad du tycker om att göra på fritiden."]
             }
           ]
         },
@@ -344,9 +385,11 @@
                 "en skola för ungdomar efter grundskolan",
                 "en plats för sportevenemang"
               ],
+              "correct_answer": "en skola för ungdomar efter grundskolan",
               "audio": null,
               "action": null,
-              "affected_text": null
+              "affected_text": null,
+              "hints": null
             },
             {
               "exercise_id": 18,
@@ -358,9 +401,11 @@
                 "Hon tror inte basket påverkar längden",
                 "Hon vet inte"
               ],
+              "correct_answer": "Hon tror inte basket påverkar längden",
               "audio": null,
               "action": null,
-              "affected_text": null
+              "affected_text": null,
+              "hints": null
             },
             {
               "exercise_id": 19,
@@ -368,18 +413,26 @@
               "cefr": ["A2"],
               "query": "Vad tycker du om Annas kommentar om längd och sport?",
               "answer_options": null,
+              "correct_answer": null,
               "audio": null,
               "action": null,
-              "affected_text": null
+              "affected_text": null,
+              "hints": [
+                "Jag tycker att basket är bra för långa personer.",
+                "Jag håller med Anna."
+              ]
             },
             {
               "exercise_id": 20,
               "type": "pronounce-rep",
               "cefr": ["A2"],
               "query": null,
+              "answer_options": null,
+              "correct_answer": null,
               "audio": null,
               "action": "emphasize-text",
-              "affected_text": "Det tror jag inte påverkar din längd… Du spelade väl basket på grund av att du var lång?"
+              "affected_text": "Det tror jag inte påverkar din längd… Du spelade väl basket på grund av att du var lång?",
+              "hints": null
             }
           ]
         },
@@ -429,9 +482,14 @@
               "cefr": ["A1", "A2"],
               "query": "Vilken sport tycker du är roligast?",
               "answer_options": null,
+              "correct_answer": null,
               "audio": null,
               "action": null,
-              "affected_text": null
+              "affected_text": null,
+              "hints": [
+                "Jag tycker att fotboll är roligast.",
+                "Jag tycker att basket är roligast."
+              ]
             }
           ]
         },
@@ -468,9 +526,12 @@
               "type": "pronounce-deaf",
               "cefr": ["A1", "A2"],
               "query": null,
+              "answer_options": null,
+              "correct_answer": null,
               "audio": null,
               "action": "hide-audio",
-              "affected_text": "Ah jo, verkligen."
+              "affected_text": "Ah jo, verkligen.",
+              "hints": null
             }
           ]
         },
@@ -508,18 +569,23 @@
               "cefr": ["A1", "A2"],
               "query": "Vem erbjuder sig att betala?",
               "answer_options": ["Anna", "Karl", "Servitrisen"],
+              "correct_answer": "Anna",
               "audio": null,
               "action": null,
-              "affected_text": null
+              "affected_text": null,
+              "hints": null
             },
             {
               "exercise_id": 24,
               "type": "pronounce-rep",
               "cefr": ["A1", "A2"],
               "query": null,
+              "answer_options": null,
+              "correct_answer": null,
               "audio": null,
               "action": "emphasize-text",
-              "affected_text": "Verkligen? Hmm, jag får väl betala då."
+              "affected_text": "Verkligen? Hmm, jag får väl betala då.",
+              "hints": null
             },
             {
               "exercise_id": 25,
@@ -527,9 +593,14 @@
               "cefr": ["A2"],
               "query": "Tycker du att det är viktigt att betala för sig själv på en dejt? Varför eller varför inte?",
               "answer_options": null,
+              "correct_answer": null,
               "audio": null,
               "action": null,
-              "affected_text": null
+              "affected_text": null,
+              "hints": [
+                "Jag tycker att det är viktigt eftersom...",
+                "Det är mannen som borde betala."
+              ]
             }
           ]
         }
@@ -578,9 +649,11 @@
                 "Åka hem",
                 "Gå till ett museum"
               ],
+              "correct_answer": "Ta en promenad",
               "audio": null,
               "action": null,
-              "affected_text": null
+              "affected_text": null,
+              "hints": null
             },
             {
               "exercise_id": 27,
@@ -592,9 +665,11 @@
                 "Att klättra ett berg",
                 "Att dansa"
               ],
+              "correct_answer": "Att gå en tur",
               "audio": null,
               "action": null,
-              "affected_text": null
+              "affected_text": null,
+              "hints": null
             }
           ]
         },
@@ -626,8 +701,10 @@
               "cefr": ["A1", "A2"],
               "query": null,
               "audio": null,
+              "correct_answer": null,
               "action": "hide-audio",
-              "affected_text": "Oj, det där är Maria... mitt ex."
+              "affected_text": "Oj, det där är Maria... mitt ex.",
+              "hints": null
             },
             {
               "exercise_id": 29,
@@ -639,9 +716,11 @@
                 "En gammal vän",
                 "En kollega"
               ],
+              "correct_answer": "Hans ex, Maria",
               "audio": null,
               "action": null,
-              "affected_text": null
+              "affected_text": null,
+              "hints": null
             }
           ]
         },
@@ -709,9 +788,14 @@
               "cefr": ["A2"],
               "query": "Vilken typ av meddelanden gillar du att få, och från vem?",
               "answer_options": null,
+              "correct_answer": null,
               "audio": null,
               "action": null,
-              "affected_text": null
+              "affected_text": null,
+              "hints": [
+                "Jag gillar att få meddelanden från mina vänner.",
+                "Jag gillar att få meddelanden från min familj."
+              ]
             },
             {
               "exercise_id": 31,
@@ -723,9 +807,11 @@
                 "Hon blir arg",
                 "Hon ignorerar meddelandet"
               ],
+              "correct_answer": "Hon skrattar och nämner att det är från hennes ex",
               "audio": null,
               "action": null,
-              "affected_text": null
+              "affected_text": null,
+              "hints": null
             }
           ]
         },
@@ -757,8 +843,10 @@
               "cefr": ["A1", "A2"],
               "query": null,
               "audio": null,
+              "correct_answer": null,
               "action": "hide-audio",
-              "affected_text": "Det var bara ett gammalt foto. Inget speciellt."
+              "affected_text": "Det var bara ett gammalt foto. Inget speciellt.",
+              "hints": null
             }
           ]
         },
@@ -796,8 +884,10 @@
               "cefr": ["A1", "A2"],
               "query": null,
               "audio": null,
+              "correct_answer": null,
               "action": "hide-audio",
-              "affected_text": "Tack för en trevlig kväll, Karl."
+              "affected_text": "Tack för en trevlig kväll, Karl.",
+              "hints": null
             }
           ]
         },
@@ -823,9 +913,14 @@
               "cefr": ["A1", "A2"],
               "query": "Hur avslutar du en trevlig kväll med en vän?",
               "answer_options": null,
+              "correct_answer": null,
               "audio": null,
               "action": null,
-              "affected_text": null
+              "affected_text": null,
+              "hints": [
+                "Jag tackar för kvällen.",
+                "Jag säger att jag har haft en trevlig kväll och att vi får ses snart igen."
+              ]
             },
             {
               "exercise_id": 35,
@@ -837,9 +932,11 @@
                 "Att han är glad",
                 "Att han inte kommer glömma plånboken"
               ],
+              "correct_answer": "Att han inte kommer glömma plånboken",
               "audio": null,
               "action": null,
-              "affected_text": null
+              "affected_text": null,
+              "hints": null
             }
           ]
         },

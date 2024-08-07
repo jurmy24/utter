@@ -1,4 +1,4 @@
-from pydantic import BaseModel, ValidationError, Field, model_validator
+from pydantic import BaseModel, Field, model_validator
 from typing import Any, Dict, List, Optional, Literal, Union
 
 
@@ -18,22 +18,34 @@ class Exercise(BaseModel):
     skip_condition: Optional[Literal["if-not-voice", "if-not-audio"]] = None
     query: Optional[str] = None
     answer_options: Optional[List[str]] = None
+    correct_answer: Optional[str] = None
+    hints: Optional[List[str]] = None
     audio: Optional[Any] = None
     action: Optional[
         Literal["hide-text", "hide-audio", "emphasize-text", "hide-all"]
     ] = Field(default=None)
     affected_text: Optional[str] = Field(default=None)
 
-    # TODO: Add hints for the speak and interact exercises
-    # TODO: Continue adding checks for the values that should exist based on different things
-
-    # Define a model validator to validate that the action associated with the exercise matches the exercise type
+    # Main validator that checks all conditions
     @model_validator(mode="before")
     @classmethod
-    def validate_action_based_on_type(cls, values: Dict[str, Any]) -> Dict[str, Any]:
+    def validate(cls, values: Dict[str, Any]) -> Dict[str, Any]:
+        values = cls.check_action(values)
+        values = cls.check_hints(values)
+        values = cls.check_affected_text(values)
+        values = cls.check_correct_answer(values)
+        return values
+
+    @classmethod
+    def check_action(cls, values: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Validate that the action matches the exercise type requirements.
+        Raises ValueError if the action does not match the expected action for the exercise type.
+        """
         action = values.get("action")
         exercise_type = values.get("type")
 
+        # Mapping exercise types to required actions
         type_to_action = {
             "comp-listen": "hide-text",
             "pronounce-rep": "emphasize-text",
@@ -47,7 +59,59 @@ class Exercise(BaseModel):
                 raise ValueError(
                     f"Action for type '{exercise_type}' must be '{expected_action}', but '{action}' was provided."
                 )
+            # Set the action to the expected value if it's None
             values["action"] = expected_action
+
+        return values
+
+    @classmethod
+    def check_hints(cls, values: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Validate that hints exist for specific exercise types.
+        Raises ValueError if hints are required for the exercise type but are not provided.
+        """
+        exercise_type = values.get("type")
+        hints = values.get("hints")
+
+        # Check for hints requirement
+        if exercise_type in {"speak-replace", "speak-question", "interact"}:
+            if not hints:
+                raise ValueError(
+                    f"Hints are required for exercise type '{exercise_type}'"
+                )
+
+        return values
+
+    @classmethod
+    def check_affected_text(cls, values: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Validate that affected_text is provided when action is not None.
+        Raises ValueError if affected_text is required but not provided.
+        """
+        action = values.get("action")
+        affected_text = values.get("affected_text")
+
+        # Check for affected_text requirement
+        if action is not None and not affected_text:
+            raise ValueError("affected_text is required when action is not None")
+
+        return values
+
+    @classmethod
+    def check_correct_answer(cls, values: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Validate that correct_answer is provided for certain exercise types.
+        Raises ValueError if correct_answer is required but not provided.
+        """
+        exercise_type = values.get("type")
+        correct_answer = values.get("correct_answer")
+
+        # Check for correct_answer requirement
+        if exercise_type in {"comp-mcq", "comp-tf", "comp-listen"}:
+            if correct_answer is None:
+                raise ValueError(
+                    f"correct_answer is required for exercise type '{exercise_type}'"
+                )
 
         return values
 
